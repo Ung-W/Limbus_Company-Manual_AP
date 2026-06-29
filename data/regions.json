@@ -1,0 +1,64 @@
+{
+  "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.regions.schema.json",
+  "Floor 1": {
+    "starting": false,
+    "connects_to": [],
+    "requires": ""
+  },
+  "Floor 2": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:1|"
+  },
+  "Floor 3": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:2| AND |@Sinner:3|"
+  },
+  "Floor 4": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:3|"
+  },
+  "Floor 5": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:4| AND |Sinner slot +1:2|"
+  },
+  "Floor 6": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:5|"
+  },
+  "Floor 7": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:6|"
+  },
+  "Floor 8": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:7| AND |@Sinner:7|"
+  },
+  "Floor 9": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:8|"
+  },
+  "Floor 10": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:9| AND |Sinner slot +1:6|"
+  },
+  "Floor 11": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:10|"
+  },
+  "Floor 12": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:11|"
+  },
+  "Floor 13": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:12| AND |@Sinner:12|"
+  },
+  "Floor 14": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:13|"
+  },
+  "Floor 15": {
+    "connects_to": [],
+    "requires": "|Progressive Floor:14| AND |Sinner slot +1:11|"
+  }
+}

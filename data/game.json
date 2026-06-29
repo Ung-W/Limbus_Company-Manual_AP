@@ -1,0 +1,21 @@
+{
+  "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.game.schema.json",
+  "game": "LimbusCompany",
+  "creator": "EchoingEito",
+  "filler_item_name": "Filler",
+  "starting_items": [
+    {
+      "item_categories": [
+        "Sinner"
+      ],
+      "random": 1
+    },
+    {
+      "item_categories": [
+        "Sin"
+      ],
+      "random": 1
+    }
+  ],
+  "death_link": true
+}

@@ -1,0 +1,1093 @@
+{
+  "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.locations.schema.json",
+  "data": [
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 1 - reward 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 2 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 3 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 4 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 5 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 6 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 7 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 8 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 9 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 10 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 11 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 12 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 13 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 14 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 15 - reward 1",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 2 stage 1",
+      "region": "Floor 2",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 2",
+      "name": "Floor 2 stage 2",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 2",
+      "name": "Floor 2 stage 3",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 2",
+      "name": "Floor 2 stage 4",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 2",
+      "name": "Floor 2 stage 5",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 2 stage 6",
+      "region": "Floor 2",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 2 stage 7",
+      "region": "Floor 2",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 2 stage 8",
+      "region": "Floor 2",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 2",
+      "name": "Floor 2 stage 9",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 2",
+      "name": "Floor 2 stage 10",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 2",
+      "name": "Floor 2 stage 11",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 2 stage 12",
+      "region": "Floor 2",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 2",
+      "name": "Floor 2 stage 13",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 2 stage 14",
+      "region": "Floor 2",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 2 stage 15",
+      "region": "Floor 2",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 3 stage 1",
+      "region": "Floor 3",
+      "category": [
+        "Floor 3"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 3",
+      "name": "Floor 3 stage 2",
+      "category": [
+        "Floor 3"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 3 stage 3",
+      "region": "Floor 3",
+      "category": [
+        "Floor 3"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 3",
+      "name": "Floor 3 stage 4",
+      "category": [
+        "Floor 3"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 3 stage 5",
+      "region": "Floor 3",
+      "category": [
+        "Floor 3"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 3 stage 6",
+      "region": "Floor 3",
+      "category": [
+        "Floor 3"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 3 stage 7",
+      "region": "Floor 3",
+      "category": [
+        "Floor 3"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 3 stage 8",
+      "region": "Floor 3",
+      "category": [
+        "Floor 3"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 3",
+      "name": "Floor 3 stage 9",
+      "category": [
+        "Floor 3"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 3 stage 10",
+      "region": "Floor 3",
+      "category": [
+        "Floor 3"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 1 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 2 - reward 2",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 3 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 4 - reward 2",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 5 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 6 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 stage 7 - reward 2",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 8 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 9 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 10 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 11 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 12 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 13 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 14 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 1",
+      "name": "Floor 1 stage 15 - reward 2",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 4 stage 1",
+      "region": "Floor 4",
+      "category": [
+        "Floor 4"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 4",
+      "name": "Floor 4 stage 2",
+      "category": [
+        "Floor 4"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 4",
+      "name": "Floor 4 stage 3",
+      "category": [
+        "Floor 4"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 4",
+      "name": "Floor 4 stage 4",
+      "category": [
+        "Floor 4"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 4",
+      "name": "Floor 4 stage 5",
+      "category": [
+        "Floor 4"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 4",
+      "name": "Floor 4 stage 6",
+      "category": [
+        "Floor 4"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 4",
+      "name": "Floor 4 stage 7",
+      "category": [
+        "Floor 4"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 4",
+      "name": "Floor 4 stage 8",
+      "category": [
+        "Floor 4"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 4",
+      "name": "Floor 4 stage 9",
+      "category": [
+        "Floor 4"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 4",
+      "name": "Floor 4 stage 10",
+      "category": [
+        "Floor 4"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 5 stage 1",
+      "region": "Floor 5",
+      "category": [
+        "Floor 5"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 5 stage 2",
+      "region": "Floor 5",
+      "category": [
+        "Floor 5"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 5",
+      "name": "Floor 5 stage 3",
+      "category": [
+        "Floor 5"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 5",
+      "name": "Floor 5 stage 4",
+      "category": [
+        "Floor 5"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 5",
+      "name": "Floor 5 stage 5",
+      "category": [
+        "Floor 5"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 1 boss",
+      "region": "Floor 1",
+      "category": [
+        "Floor 1"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 2",
+      "name": "Floor 2 boss",
+      "category": [
+        "Floor 2"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 3",
+      "name": "Floor 3 boss",
+      "category": [
+        "Floor 3"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 4",
+      "name": "Floor 4 boss",
+      "category": [
+        "Floor 4"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 5",
+      "name": "Floor 5 boss",
+      "category": [
+        "Floor 5"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 6",
+      "name": "Floor 6 stage 1",
+      "category": [
+        "Floor 6"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 6",
+      "name": "Floor 6 stage 2",
+      "category": [
+        "Floor 6"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 6",
+      "name": "Floor 6 stage 3",
+      "category": [
+        "Floor 6"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 6",
+      "name": "Floor 6 stage 4",
+      "category": [
+        "Floor 6"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 6",
+      "name": "Floor 6 stage 5",
+      "category": [
+        "Floor 6"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 6 Boss",
+      "region": "Floor 6",
+      "category": [
+        "Floor 6"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 7",
+      "name": "Floor 7 stage 1",
+      "category": [
+        "Floor 7"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 7 stage 2",
+      "region": "Floor 7",
+      "category": [
+        "Floor 7"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 7",
+      "name": "Floor 7 stage 3",
+      "category": [
+        "Floor 7"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 7",
+      "name": "Floor 7 stage 4",
+      "category": [
+        "Floor 7"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 7",
+      "name": "Floor 7 stage 5",
+      "category": [
+        "Floor 7"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 7",
+      "name": "Floor 7 Boss",
+      "category": [
+        "Floor 7"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 8",
+      "name": "Floor 8 stage 1",
+      "category": [
+        "Floor 8"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 8",
+      "name": "Floor 8 stage 2",
+      "category": [
+        "Floor 8"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 8",
+      "name": "Floor 8 stage 3",
+      "category": [
+        "Floor 8"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 8",
+      "name": "Floor 8 stage 4",
+      "category": [
+        "Floor 8"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 8",
+      "name": "Floor 8 stage 5",
+      "category": [
+        "Floor 8"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 8",
+      "name": "Floor 8 boss",
+      "category": [
+        "Floor 8"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 9",
+      "name": "Floor 9 stage 1",
+      "category": [
+        "Floor 9"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 9",
+      "name": "Floor 9 stage 2",
+      "category": [
+        "Floor 9"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 9",
+      "name": "Floor 9 stage 3",
+      "category": [
+        "Floor 9"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 9",
+      "name": "Floor 9 stage 4",
+      "category": [
+        "Floor 9"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 9",
+      "name": "Floor 9 stage 5",
+      "category": [
+        "Floor 9"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 9",
+      "name": "Floor 9 boss",
+      "category": [
+        "Floor 9"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 10",
+      "name": "Floor 10 stage 1",
+      "category": [
+        "Floor 10"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 10",
+      "name": "Floor 10 stage 2",
+      "category": [
+        "Floor 10"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 10",
+      "name": "Floor 10 stage 3",
+      "category": [
+        "Floor 10"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 10 stage 4",
+      "region": "Floor 10",
+      "category": [
+        "Floor 10"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 10",
+      "name": "Floor 10 stage 5",
+      "category": [
+        "Floor 10"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 10 boss",
+      "region": "Floor 10",
+      "category": [
+        "Floor 10"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 11",
+      "name": "Floor 11 stage 1",
+      "category": [
+        "Floor 11"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 11",
+      "name": "Floor 11 stage 2",
+      "category": [
+        "Floor 11"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 11",
+      "name": "Floor 11 stage 3",
+      "category": [
+        "Floor 11"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 11",
+      "name": "Floor 11 stage 4",
+      "category": [
+        "Floor 11"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 11",
+      "name": "Floor 11 stage 5",
+      "category": [
+        "Floor 11"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 11",
+      "name": "Floor 11 boss",
+      "category": [
+        "Floor 11"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 12 stage 1",
+      "region": "Floor 12",
+      "category": [
+        "Floor 12"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 12 stage 2",
+      "region": "Floor 12",
+      "category": [
+        "Floor 12"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 12",
+      "name": "Floor 12 stage 3",
+      "category": [
+        "Floor 12"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 12",
+      "name": "Floor 12 stage 4",
+      "category": [
+        "Floor 12"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 12",
+      "name": "Floor 12 stage 5",
+      "category": [
+        "Floor 12"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 12",
+      "name": "Floor 12 boss",
+      "category": [
+        "Floor 12"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 13 stage 1",
+      "region": "Floor 13",
+      "category": [
+        "Floor 13"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 13",
+      "name": "Floor 13 stage 2",
+      "category": [
+        "Floor 13"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 13",
+      "name": "Floor 13 stage 3",
+      "category": [
+        "Floor 13"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 13",
+      "name": "Floor 13 stage 4",
+      "category": [
+        "Floor 13"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 13 stage 5",
+      "region": "Floor 13",
+      "category": [
+        "Floor 13"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 13 boss",
+      "region": "Floor 13",
+      "category": [
+        "Floor 13"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 14 stage 1",
+      "region": "Floor 14",
+      "category": [
+        "Floor 14"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 14 stage 2",
+      "region": "Floor 14",
+      "category": [
+        "Floor 14"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 14 stage 3",
+      "region": "Floor 14",
+      "category": [
+        "Floor 14"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 14 stage 4",
+      "region": "Floor 14",
+      "category": [
+        "Floor 14"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 14",
+      "name": "Floor 14 stage 5",
+      "category": [
+        "Floor 14"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 14 boss",
+      "region": "Floor 14",
+      "category": [
+        "Floor 14"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 15 stage 1",
+      "region": "Floor 15",
+      "category": [
+        "Floor 15"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 15",
+      "name": "Floor 15 stage 2",
+      "category": [
+        "Floor 15"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 15",
+      "name": "Floor 15 stage 3",
+      "category": [
+        "Floor 15"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 15 stage 4",
+      "region": "Floor 15",
+      "category": [
+        "Floor 15"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "Floor 15 stage 5",
+      "region": "Floor 15",
+      "category": [
+        "Floor 15"
+      ],
+      "requires": ""
+    },
+    {
+      "region": "Floor 15",
+      "name": "Floor 15 boss",
+      "category": [
+        "Floor 15"
+      ],
+      "requires": ""
+    },
+    {
+      "name": "VICTORY",
+      "victory": true,
+      "category": [
+        "VICTORY"
+      ],
+      "requires": "|VICTORY|"
+    }
+  ]
+}

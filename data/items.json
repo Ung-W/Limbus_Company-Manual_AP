@@ -1,0 +1,321 @@
+{
+  "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.items.schema.json",
+  "data": [
+    {
+      "count": "14",
+      "name": "Progressive Floor",
+      "category": [],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Gregor",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Faust",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Rodion",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Heathcliff",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Yi Sang",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Ryoshu",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Don Quixote",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Meursault",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Honglu",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Ishmael",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Sinclair",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Outis",
+      "category": [
+        "Sinner"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Rupture",
+      "category": [
+        "Sin"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Poise",
+      "category": [
+        "Sin"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Charge",
+      "category": [
+        "Sin"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Bleed",
+      "category": [
+        "Sin"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Burn",
+      "category": [
+        "Sin"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Tremor",
+      "category": [
+        "Sin"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Sinking",
+      "category": [
+        "Sin"
+      ],
+      "progression": true
+    },
+    {
+      "count": "7",
+      "name": "Ego gift slot x5",
+      "category": [],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Star of the Beginning",
+      "category": [
+        "Graces"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Cumulating Starcloud",
+      "category": [
+        "Graces"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Interstellar Travel",
+      "category": [
+        "Graces"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Star-Shower",
+      "category": [
+        "Graces"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Binary Star-Shop",
+      "category": [
+        "Graces"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Moon Star-Shop",
+      "category": [
+        "Graces"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Favor of the Nebulae",
+      "category": [
+        "Graces"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Starlight Guidance",
+      "category": [
+        "Graces"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Chance Comet",
+      "category": [
+        "Graces"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Perfected Possibility",
+      "category": [
+        "Graces"
+      ],
+      "useful": true
+    },
+    {
+      "count": "11",
+      "name": "Sinner slot +1",
+      "category": [
+        "Party Upgrade"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "ZAYN Ego slot unlock",
+      "category": [
+        "Ego Slot"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "TETH ego slot unlock",
+      "category": [
+        "Ego Slot"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "HE ego slot unlock",
+      "category": [
+        "Ego Slot"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "WAW ego slot unlock",
+      "category": [
+        "Ego Slot"
+      ],
+      "progression": true
+    },
+    {
+      "count": 1,
+      "name": "Craft Egos unlock",
+      "category": [
+        "Shop"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Skill replacement unlock",
+      "category": [
+        "Shop"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "Maost Key",
+      "category": [
+        "Sinner Key"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "VICTORY",
+      "category": [
+        "VICTORY"
+      ],
+      "progression_skip_balancing": true
+    }
+  ]
+}
