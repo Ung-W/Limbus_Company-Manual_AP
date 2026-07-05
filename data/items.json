@@ -4,7 +4,9 @@
     {
       "count": "14",
       "name": "Progressive Floor",
-      "category": [],
+      "category": [
+        "Progression"
+      ],
       "progression": true
     },
     {
@@ -162,7 +164,9 @@
     {
       "count": "7",
       "name": "Ego gift slot x5",
-      "category": [],
+      "category": [
+        "Ego Slot"
+      ],
       "useful": true
     },
     {
@@ -249,7 +253,7 @@
       "count": "11",
       "name": "Sinner slot +1",
       "category": [
-        "Party Upgrade"
+        "Progression"
       ],
       "progression": true
     },
