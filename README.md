@@ -23,6 +23,13 @@ You must beat your final Floor
 
 ### AP Gating
 - Progressive Floors
+  > Party Slots means all the "Sinner Slot +1" items + 1 (this one is implied since you can't go with 0 members in your party)
+  - Floor 3+ requires 3 Sinners
+  - Floor 5+ requires 3 Sinners and 3 Party Slots
+  - Floor 8+ requires 7 Sinners and 3 Party Slots
+  - Floor 10+ requires 7 Sinners and 7 Party Slots
+  - Floor 13+ requires 12 Sinners and 7 Party Slots
+  - Floor 15+ requires 12 Sinners and 12 Party Slots
 
 ## Starting Inventory
 

@@ -2,7 +2,7 @@
   "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.game.schema.json",
   "game": "LimbusCompany",
   "creator": "EchoingEito",
-  "filler_item_name": "Filler",
+  "filler_item_name": "Lunacy",
   "starting_items": [
     {
       "item_categories": [

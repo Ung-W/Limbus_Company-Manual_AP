@@ -60,7 +60,7 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
 
     if victory == Victory_Condition.option_floor_5:
         regions_to_remove = [
-                "Floor 6", "Floor 7", "Floor 8", "Floor 9", "Floor 10", "Floor 11", "Floor 12", "Floor 13", "Floor 14", "Floor 15"
+                "Floor 06", "Floor 07", "Floor 08", "Floor 09", "Floor 10", "Floor 11", "Floor 12", "Floor 13", "Floor 14", "Floor 15"
             ]
     elif victory == Victory_Condition.option_floor_10:
         regions_to_remove = [
@@ -88,15 +88,15 @@ def before_create_items_all(item_config: dict[str, int|dict], world: World, mult
 def before_create_items_starting(item_pool: list, world: World, multiworld: MultiWorld, player: int) -> list:
     victory = get_option_value(multiworld, player, "victory_condition")
     
-    victory_item = next(i for i in item_pool if i.name == "VICTORY")
+    victory_item = next(i for i in item_pool if i.name == "Final Floor Cleared")
     if victory == Victory_Condition.option_floor_5:
-        victory_location_name = "Floor 5 boss"
+        victory_location_name = "Floor 05 Boss"
         
     elif victory == Victory_Condition.option_floor_10:
-        victory_location_name = "Floor 10 boss"
+        victory_location_name = "Floor 10 Boss"
         
     elif victory == Victory_Condition.option_floor_15:
-        victory_location_name = "Floor 15 boss"
+        victory_location_name = "Floor 15 Boss"
     try:
         location = next(l for l in multiworld.get_unfilled_locations(player=player) if l.name == victory_location_name)
     except StopIteration:
