@@ -36,6 +36,11 @@ class victoryCondition(Choice):
 class sinnerOption(OptionList):
     """
         Toggle Sinners to be included in the pool.
+        
+        Note: You have a different number of minimum Sinners to be togggled on depending on your Victory Condition or your seed will NOT generate (unbeatable)
+        - Floor 5 : 3 Sinners minimum
+        - Floor 10 : 7 Sinners minimum
+        - Floor 15 : All Sinners must be included
             
         Possible values are : "Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"
     """
