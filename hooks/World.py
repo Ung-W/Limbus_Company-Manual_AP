@@ -56,7 +56,7 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
     regions_to_remove: list[str] = [] # List of region names
 
     # Add your code here to calculate which locations to remove
-    victory = get_option_value(multiworld, player, "victoryCondition")
+    victory = get_option_value(multiworld, player, "victory_condition")
 
     if victory == victoryCondition.option_floor_5:
         regions_to_remove = [
@@ -89,30 +89,22 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
     items_to_remove = []
         
     full_sinner_list = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
-    sinner_list = world.options.sinner_option
+    sinner_list = world.options.sinner_included
     
     for sinner in sinner_list:
         full_sinner_list.remove(sinner)
-        
-    print("Sinners to remove:", full_sinner_list)
     
     for sinner in full_sinner_list:
         items_to_remove += [f"{sinner}"]
-        
-    print("Sinners removed:", items_to_remove)
 
     full_sin_list = ["Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"]
-    sin_list = world.options.sin_option
+    sin_list = world.options.sin_included
     
     for sin in sin_list:
         full_sin_list.remove(sin)
-        
-        print("Sins to remove:", full_sin_list)
     
     for sin in full_sin_list:
         items_to_remove += [f"{sin}"]
-
-    print("Sins removed:", items_to_remove)
     
     for item_name in items_to_remove:
             item = next(i for i in item_pool if i.name == item_name)
@@ -141,18 +133,75 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
 
 # The item pool after starting items are processed but before filler is added, in case you want to see the raw item pool at that stage
 def before_create_items_filler(item_pool: list, world: World, multiworld: MultiWorld, player: int) -> list:
-    # Use this hook to remove items from the item pool
-    itemNamesToRemove: list[str] = [] # List of item names
+    starting_items = []
+    
+    sinner_list = list(world.options.sinner_included)
+    sin_list = list(world.options.sin_included)
+    id_excluded = world.options.id_start_exclude
+    
+    # All Sins excluded from starting items per character
+    sin_excluded = {
+        "Yi Sang": [], "Faust": [], "Don Quixote": [], "Ryoshu": [], "Meursault": [], "Honglu": [],
+        "Heathcliff": [], "Ishmael": [], "Rodion": [], "Sinclair": [], "Outis": [], "Gregor": []
+    }
+    
+    sin_included = {
+        "Yi Sang": [], "Faust": [], "Don Quixote": [], "Ryoshu": [], "Meursault": [], "Honglu": [],
+        "Heathcliff": [], "Ishmael": [], "Rodion": [], "Sinclair": [], "Outis": [], "Gregor": []
+    }
+    
+    for id in id_excluded:
+        sinner, sin = (x.strip() for x in id.split("/"))
+        sin_excluded[sinner].append(sin)
+    
+    # If Sinner has no excluded combo, add every possibility to starting items
+    for sinner in sinner_list:
+        sin_included[sinner] = [sin for sin in sin_list if sin not in sin_excluded[sinner]]
+            
+    starting_items += [
+        {
+            "items": sinner_list,
+            "random": 1
+        }
+    ]
+    
+    for sinner in sinner_list:
+        starting_items += [
+            {
+                "previous_item": sinner,
+                "items": sin_included[sinner],
+                "random": 1
+            }
+        ]
+        
+    sinner_selected = ""
+    
+    for starting in starting_items:
+        if sinner_selected == "" or sinner_selected == starting['previous_item']:
+            # get all items that have at least the category or categories we want
+            possible_item_names = starting['items']
+            
+            # remove any duplicate names from the list of possible items
+            possible_item_names = set(possible_item_names)
 
-    # Add your code here to calculate which items to remove.
-    #
-    # Because multiple copies of an item can exist, you need to add an item name
-    # to the list multiple times if you want to remove multiple copies of it.
-
-    for itemName in itemNamesToRemove:
-        item = next(i for i in item_pool if i.name == itemName)
-        remove_specific_item(item_pool, item)
-
+            # we add the list of items that have this specific category to our possible items
+            possible_items = [
+                i for i in item_pool 
+                    if i.name in possible_item_names
+            ]
+            
+            # pick a random possible item(s) to start with, then precollect them and,
+            #   since we just took them, remove them from the item pool
+            for _ in range(starting['random']): # loops from 0 to starting['random'] - 1
+                random_starting_item = world.random.choice(possible_items)
+                multiworld.push_precollected(random_starting_item)
+                possible_items.remove(random_starting_item) # don't allow choosing the exact same item again
+                item_pool.remove(random_starting_item) # remove it from the pool since we're starting with it
+            
+            if sinner_selected == "":
+                sinner_selected = random_starting_item.name
+                print(f"selected sinner = {sinner_selected}")
+        
     return item_pool
 
     # Some other useful hook options:

@@ -3,19 +3,5 @@
   "game": "LimbusCompany",
   "creator": "EchoingEito",
   "filler_item_name": "Lunacy",
-  "starting_items": [
-    {
-      "item_categories": [
-        "Sinner"
-      ],
-      "random": 1
-    },
-    {
-      "item_categories": [
-        "Sin"
-      ],
-      "random": 1
-    }
-  ],
   "death_link": true
 }
