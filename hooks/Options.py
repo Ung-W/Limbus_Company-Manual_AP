@@ -62,7 +62,7 @@ class startExclude(OptionList):
         Spelling for Sinners : "Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"
         Spelling for Sins : "Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"
     """
-    display_name = "Sins Included"
+    display_name = "Excluded from Starting Combo"
     default = []
 
 
