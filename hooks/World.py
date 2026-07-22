@@ -6,7 +6,7 @@ from BaseClasses import MultiWorld, CollectionState, Item
 # Object classes from Manual -- extending AP core -- representing items and locations that are used in generation
 from ..Items import ManualItem
 from ..Locations import ManualLocation
-from .Options import Victory_Condition
+from .Options import victoryCondition
 
 # Raw JSON data from the Manual apworld, respectively:
 #          data/game.json, data/items.json, data/locations.json, data/regions.json
@@ -25,7 +25,7 @@ import logging
 ##    2. create_items - Creates the item pool
 ##    3. set_rules - Creates rules for accessing regions and locations
 ##    4. generate_basic - Runs any post item pool options, like place item/category
-##    5. pre_fill - Creates the Victory_Condition location
+##    5. pre_fill - Creates the victoryCondition location
 ##
 ## The create_item method is used by plando and start_inventory settings to create an item from an item name.
 ## The fill_slot_data method will be used to send data to the Manual client for later use, like deathlink.
@@ -56,13 +56,13 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
     regions_to_remove: list[str] = [] # List of region names
 
     # Add your code here to calculate which locations to remove
-    victory = get_option_value(multiworld, player, "victory_condition")
+    victory = get_option_value(multiworld, player, "victoryCondition")
 
-    if victory == Victory_Condition.option_floor_5:
+    if victory == victoryCondition.option_floor_5:
         regions_to_remove = [
                 "Floor 06", "Floor 07", "Floor 08", "Floor 09", "Floor 10", "Floor 11", "Floor 12", "Floor 13", "Floor 14", "Floor 15"
             ]
-    elif victory == Victory_Condition.option_floor_10:
+    elif victory == victoryCondition.option_floor_10:
         regions_to_remove = [
                 "Floor 11", "Floor 12", "Floor 13", "Floor 14", "Floor 15"
             ]
@@ -86,17 +86,50 @@ def before_create_items_all(item_config: dict[str, int|dict], world: World, mult
 
 # The item pool before starting items are processed, in case you want to see the raw item pool at that stage
 def before_create_items_starting(item_pool: list, world: World, multiworld: MultiWorld, player: int) -> list:
+    items_to_remove = []
+        
+    full_sinner_list = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
+    sinner_list = world.options.sinner_option
+    
+    for sinner in sinner_list:
+        full_sinner_list.remove(sinner)
+        
+    print("Sinners to remove:", full_sinner_list)
+    
+    for sinner in full_sinner_list:
+        items_to_remove += [f"{sinner}"]
+        
+    print("Sinners removed:", items_to_remove)
+
+    full_sin_list = ["Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"]
+    sin_list = world.options.sin_option
+    
+    for sin in sin_list:
+        full_sin_list.remove(sin)
+        
+        print("Sins to remove:", full_sin_list)
+    
+    for sin in full_sin_list:
+        items_to_remove += [f"{sin}"]
+
+    print("Sins removed:", items_to_remove)
+    
+    for item_name in items_to_remove:
+            item = next(i for i in item_pool if i.name == item_name)
+            item_pool.remove(item)
+              
     victory = get_option_value(multiworld, player, "victory_condition")
     
     victory_item = next(i for i in item_pool if i.name == "Final Floor Cleared")
-    if victory == Victory_Condition.option_floor_5:
+    if victory == victoryCondition.option_floor_5:
         victory_location_name = "Floor 05 Boss"
         
-    elif victory == Victory_Condition.option_floor_10:
+    elif victory == victoryCondition.option_floor_10:
         victory_location_name = "Floor 10 Boss"
         
-    elif victory == Victory_Condition.option_floor_15:
+    elif victory == victoryCondition.option_floor_15:
         victory_location_name = "Floor 15 Boss"
+
     try:
         location = next(l for l in multiworld.get_unfilled_locations(player=player) if l.name == victory_location_name)
     except StopIteration:

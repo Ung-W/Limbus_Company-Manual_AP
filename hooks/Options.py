@@ -1,5 +1,5 @@
 # Object classes from AP that represent different types of options that you can create
-from Options import Option, FreeText, NumericOption, Toggle, DefaultOnToggle, Choice, TextChoice, Range, NamedRange, OptionGroup, PerGameCommonOptions
+from Options import Option, FreeText, NumericOption, Toggle, DefaultOnToggle, Choice, TextChoice, Range, NamedRange, OptionGroup, PerGameCommonOptions, OptionList
 # These helper methods allow you to determine if an option has been set, or what its value is, for any player in the multiworld
 from ..Helpers import is_option_enabled, get_option_value
 from typing import Type, Any
@@ -25,17 +25,38 @@ from typing import Type, Any
 # To add an option, use the before_options_defined hook below and something like this:
 #   options["total_characters_to_win_with"] = TotalCharactersToWinWith
 #
-class Victory_Condition(Choice):
+class victoryCondition(Choice):
     """What floor will you be going to?"""
     display_name = "Final Floor"
     option_floor_5 = 1
     option_floor_10 = 2
     option_floor_15 = 3
     default = 1
+    
+class sinnerOption(OptionList):
+    """
+        Toggle Sinners to be included in the pool.
+            
+        possible values are : "Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"
+    """
+    display_name = "Sinners Included"
+    default = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
+    
+class sinOption(OptionList):
+    """
+        Toggle Sins to be included in the pool.
+            
+        possible values are : "Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"
+    """
+    display_name = "Sins Included"
+    default = ["Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"]
+
 
 # This is called before any manual options are defined, in case you want to define your own with a clean slate or let Manual define over them
 def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, Type[Option[Any]]]:
-    options["victory_condition"] = Victory_Condition
+    options["victory_condition"] = victoryCondition
+    options["sinner_option"] = sinnerOption
+    options["sin_option"] = sinOption
     return options
 
 # This is called after any manual options are defined, in case you want to see what options are defined or want to modify the defined options
