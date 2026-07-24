@@ -134,6 +134,11 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
 # The item pool after starting items are processed but before filler is added, in case you want to see the raw item pool at that stage
 def before_create_items_filler(item_pool: list, world: World, multiworld: MultiWorld, player: int) -> list:
     starting_items = []
+    full_sinner_list = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
+    full_sin_list = ["Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"]
+    
+    sinner_start = get_option_value(multiworld, player, "sinner_start")
+    sin_start = get_option_value(multiworld, player, "sin_start")
     
     sinner_list = list(world.options.sinner_included)
     sin_list = list(world.options.sin_included)
@@ -157,22 +162,44 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
     # If Sinner has no excluded combo, add every possibility to starting items
     for sinner in sinner_list:
         sin_included[sinner] = [sin for sin in sin_list if sin not in sin_excluded[sinner]]
-            
-    starting_items += [
-        {
-            "items": sinner_list,
-            "random": 1
-        }
-    ]
-    
-    for sinner in sinner_list:
+           
+    if sinner_start == 12: 
         starting_items += [
             {
-                "previous_item": sinner,
-                "items": sin_included[sinner],
+                "items": sinner_list,
                 "random": 1
             }
         ]
+    else:
+        if full_sinner_list[sinner_start] not in sinner_list:
+            raise ValueError(f'Yaml option "sinner_start" misconfigured, the Sinner selected is not part of the randomization')
+        starting_items += [
+            {
+                "items": [full_sinner_list[sinner_start]],
+                "random": 1
+            }
+        ]
+        
+    if sin_start == 7:
+        for sinner in sinner_list:
+            starting_items += [
+                {
+                    "previous_item": sinner,
+                    "items": sin_included[sinner],
+                    "random": 1
+                }
+            ]
+    else:
+        if full_sin_list[sin_start] not in sin_list:
+            raise ValueError(f'Yaml option "sin_start" misconfigured, the Sin selected is not part of the randomization')
+        for sinner in sinner_list:
+            starting_items += [
+                {
+                    "previous_item": sinner,
+                    "items": [full_sin_list[sin_start]],
+                    "random": 1
+                }
+            ]
         
     sinner_selected = ""
     
@@ -200,7 +227,6 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
             
             if sinner_selected == "":
                 sinner_selected = random_starting_item.name
-                print(f"selected sinner = {sinner_selected}")
         
     return item_pool
 

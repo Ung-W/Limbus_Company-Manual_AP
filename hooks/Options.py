@@ -47,6 +47,27 @@ class sinnerOption(OptionList):
     display_name = "Sinners Included"
     default = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
     
+class sinnerStart(Choice):
+    """
+        Which Sinner do you start with ?
+        If not random, make sure the Sinner you selected is Enabled in sinner_included
+    """
+    display_name = "Starting Sinner"
+    option_random_sinner = 12
+    option_yi_sang = 0
+    option_faust = 1
+    option_don_quixote = 2
+    option_ryoshu = 3
+    option_meursault = 4
+    option_honglu = 5
+    option_heathcliff = 6
+    option_ishmael = 7
+    option_rodion = 8
+    option_sinclair = 9
+    option_outis = 10
+    option_gregor = 11
+    default = 12
+    
 class sinOption(OptionList):
     """
         Toggle Sins to be included in the pool.
@@ -55,6 +76,22 @@ class sinOption(OptionList):
     """
     display_name = "Sins Included"
     default = ["Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"]
+    
+class sinStart(Choice):
+    """
+        Which Sin do you start with ?
+        If not random, make sure the Sin you selected is Enabled in sin_included
+    """
+    display_name = "Starting Sin"
+    option_random_sin = 7
+    option_burn = 0
+    option_bleed = 1
+    option_tremor = 2
+    option_rupture = 3
+    option_sinking = 4
+    option_poise = 5
+    option_charge = 6
+    default = 7
     
 class startExclude(OptionList):
     """
@@ -75,7 +112,9 @@ class startExclude(OptionList):
 def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, Type[Option[Any]]]:
     options["victory_condition"] = victoryCondition
     options["sinner_included"] = sinnerOption
+    options["sinner_start"] = sinnerStart
     options["sin_included"] = sinOption
+    options["sin_start"] = sinStart
     options["id_start_exclude"] = startExclude
     return options
 
