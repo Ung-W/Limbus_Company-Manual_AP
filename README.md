@@ -33,8 +33,8 @@ You must beat your final Floor
 
 ## Starting Inventory
 
-- One random Sinner
-- One Random Sin
+- One Sinner (random or not)
+- One Sin (random or not)
 
 ## Locations
 
