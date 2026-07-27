@@ -57,20 +57,19 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
 
     # Add your code here to calculate which locations to remove
     victory = get_option_value(multiworld, player, "victory_condition")
+    
+    floor_list = ["Floor 05", "Floor 06", "Floor 07", "Floor 08", "Floor 09", "Floor 10", "Floor 11", "Floor 12", "Floor 13", "Floor 14", "Floor 15"]
 
-    if victory == victoryCondition.option_floor_5:
-        regions_to_remove = [
-                "Floor 06", "Floor 07", "Floor 08", "Floor 09", "Floor 10", "Floor 11", "Floor 12", "Floor 13", "Floor 14", "Floor 15"
-            ]
-    elif victory == victoryCondition.option_floor_10:
-        regions_to_remove = [
-                "Floor 11", "Floor 12", "Floor 13", "Floor 14", "Floor 15"
-            ]
+    for i in range(victory, 15):
+        regions_to_remove += [floor_list[i-4]]
+        
+    print("regions to remove :", regions_to_remove)
         
     for region in multiworld.regions:
         if region.player == player:
             if region.name in regions_to_remove:
                 for location in list(region.locations):
+                        print("removing location: ", location, " |from region: ", region.name)
                         region.locations.remove(location)
 
 # This hook allows you to access the item names & counts before the items are created. Use this to increase/decrease the amount of a specific item in the pool
@@ -113,14 +112,15 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
     victory = get_option_value(multiworld, player, "victory_condition")
     
     victory_item = next(i for i in item_pool if i.name == "Final Floor Cleared")
-    if victory == victoryCondition.option_floor_5:
-        victory_location_name = "Floor 05 Boss"
-        
-    elif victory == victoryCondition.option_floor_10:
-        victory_location_name = "Floor 10 Boss"
-        
-    elif victory == victoryCondition.option_floor_15:
-        victory_location_name = "Floor 15 Boss"
+    
+    boss_list = [
+        "Floor 05 Boss", "Floor 06 Boss", "Floor 07 Boss", "Floor 08 Boss", "Floor 09 Boss",
+        "Floor 10 Boss", "Floor 11 Boss", "Floor 12 Boss", "Floor 13 Boss", "Floor 14 Boss", "Floor 15 Boss"
+        ]
+    
+    victory_location_name = boss_list[victory-5]
+    
+    print("Victory Location: ", victory_location_name)
 
     try:
         location = next(l for l in multiworld.get_unfilled_locations(player=player) if l.name == victory_location_name)
@@ -146,8 +146,18 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
     
     # All Sins excluded from starting items per character
     sin_excluded = {
-        "Yi Sang": [], "Faust": [], "Don Quixote": [], "Ryoshu": [], "Meursault": [], "Honglu": [],
-        "Heathcliff": [], "Ishmael": [], "Rodion": [], "Sinclair": [], "Outis": [], "Gregor": []
+        "Yi Sang": ["Charge"],
+        "Faust": ["Poise"],
+        "Don Quixote": ["Burn", "Sinking", "Charge"],
+        "Ryoshu": ["Sinking"],
+        "Meursault": ["Charge"],
+        "Honglu": ["Charge"],
+        "Heathcliff": ["Burn"],
+        "Ishmael": ["Rupture", "Sinking", "Charge"],
+        "Rodion": ["Sinking", "Charge"],
+        "Sinclair": ["Sinking", "Poise", "Charge"],
+        "Outis": ["Charge"],
+        "Gregor": ["Tremor", "Poise", "Charge"]
     }
     
     sin_included = {
@@ -193,6 +203,10 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
         if full_sin_list[sin_start] not in sin_list:
             raise ValueError(f'Yaml option "sin_start" misconfigured, the Sin selected is not part of the randomization')
         for sinner in sinner_list:
+            print(f"Sin excluded: {sin_excluded[sinner]}")
+            if full_sin_list[sin_start] in sin_excluded[sinner]:
+                raise ValueError(f'Yaml option "sin_start" misconfigured, the Sin selected clashes with the list of excluded Combos.\nIf you\'re using "sinner_start"\'s "random_sinner" option, make sure that every Sinner randomized are compliant or weight each compliant Sinner individually for a soft random')
+            
             starting_items += [
                 {
                     "previous_item": sinner,

@@ -16,6 +16,8 @@ You must beat your final Floor
 - Ego slots
 - Hyper specific Maost Key (to make mao faust a little harder to reach)
 
+> To "Unlock" an ID, you must receive the Sinner and ALL the Sins necessary for their kit
+
 ### Gamemode related
 - Grace starter buffs
 - Ego gift space

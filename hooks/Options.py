@@ -25,22 +25,21 @@ from typing import Type, Any
 # To add an option, use the before_options_defined hook below and something like this:
 #   options["total_characters_to_win_with"] = TotalCharactersToWinWith
 #
-class victoryCondition(Choice):
+class victoryCondition(Range):
     """What floor will you be going to?"""
     display_name = "Final Floor"
-    option_floor_5 = 1
-    option_floor_10 = 2
-    option_floor_15 = 3
-    default = 1
+    range_start = 5
+    range_end = 15
+    default = 5
     
 class sinnerOption(OptionList):
     """
         Toggle Sinners to be included in the pool.
         
         Note: You have a different number of minimum Sinners to be togggled on depending on your Victory Condition or your seed will NOT generate (unbeatable)
-        - Floor 5 : 3 Sinners minimum
-        - Floor 10 : 7 Sinners minimum
-        - Floor 15 : All Sinners must be included
+        - Floor 5+ : 3 Sinners minimum
+        - Floor 8+ : 7 Sinners minimum
+        - Floor 13+ : All Sinners must be included
             
         Possible values are : "Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"
     """
@@ -97,6 +96,20 @@ class startExclude(OptionList):
     """
         Define IDs of Sinners to be excluded from the starting pool.
         This makes it so you don't start with a Sin/Sinner combo that is unavailable to you.
+        
+        These Combos are excluded by default since there are no IDs that match them :
+        Yi Sang: Charge
+        Faust: Poise
+        Don Quixote: Burn, Sinking, Charge
+        Ryoshu: Sinking
+        Meursault: Charge
+        Honglu: Charge
+        Heathcliff: Burn
+        Ishmael: Rupture, Sinking, Charge
+        Rodion: Sinking, Charge
+        Sinclair: Sinking, Poise, Charge
+        Outis: Charge
+        Gregor: Tremor, Poise, Charge
             
         Syntax must be "Sinner / Sin" in quotes.
         Exemple : "Yi Sang / Tremor" if you don't have a Tremor ID for Yi Sang
