@@ -106,7 +106,7 @@ class startExclude(OptionList):
         Honglu: Charge
         Heathcliff: Burn
         Ishmael: Rupture, Sinking, Charge
-        Rodion: Sinking, Charge
+        Rodion: Charge
         Sinclair: Sinking, Poise, Charge
         Outis: Charge
         Gregor: Tremor, Poise, Charge

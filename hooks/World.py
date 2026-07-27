@@ -154,7 +154,7 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
         "Honglu": ["Charge"],
         "Heathcliff": ["Burn"],
         "Ishmael": ["Rupture", "Sinking", "Charge"],
-        "Rodion": ["Sinking", "Charge"],
+        "Rodion": ["Charge"],
         "Sinclair": ["Sinking", "Poise", "Charge"],
         "Outis": ["Charge"],
         "Gregor": ["Tremor", "Poise", "Charge"]
@@ -203,7 +203,6 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
         if full_sin_list[sin_start] not in sin_list:
             raise ValueError(f'Yaml option "sin_start" misconfigured, the Sin selected is not part of the randomization')
         for sinner in sinner_list:
-            print(f"Sin excluded: {sin_excluded[sinner]}")
             if full_sin_list[sin_start] in sin_excluded[sinner]:
                 raise ValueError(f'Yaml option "sin_start" misconfigured, the Sin selected clashes with the list of excluded Combos.\nIf you\'re using "sinner_start"\'s "random_sinner" option, make sure that every Sinner randomized are compliant or weight each compliant Sinner individually for a soft random')
             
