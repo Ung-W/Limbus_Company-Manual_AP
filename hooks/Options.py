@@ -46,8 +46,10 @@ class floorProgression(Choice):
 
 class runAmount(OptionList):
     """
-        Define how many runs per floor are needed.
+        Define how many runs per floor are included.
         Even if using the "Open" Floor progression, this will result in 5 x "number of runs" Stages all available.
+        
+        The max amount of runs is 5 (and will be faulted to 5 if going above) and your final floor will always have 1 run.
         
         You must have 15 numbers in the list, but if you're stopping before Floor 15, those above your Goal won't be counted.
         
