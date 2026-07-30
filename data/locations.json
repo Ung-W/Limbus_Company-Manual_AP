@@ -11,132 +11,6 @@
       "sort-key": "1"
     },
     {
-      "name": "Floor 01 Stage 2 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "3"
-    },
-    {
-      "name": "Floor 01 Stage 3 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "5"
-    },
-    {
-      "name": "Floor 01 Stage 4 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "7"
-    },
-    {
-      "name": "Floor 01 Stage 5 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "9"
-    },
-    {
-      "name": "Floor 01 Stage 6 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "11"
-    },
-    {
-      "name": "Floor 01 Stage 7 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "13"
-    },
-    {
-      "name": "Floor 01 Stage 8 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "15"
-    },
-    {
-      "name": "Floor 01 Stage 9 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "17"
-    },
-    {
-      "name": "Floor 01 Stage 10 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "19"
-    },
-    {
-      "name": "Floor 01 Stage 11 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "21"
-    },
-    {
-      "name": "Floor 01 Stage 12 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "23"
-    },
-    {
-      "name": "Floor 01 Stage 13 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "25"
-    },
-    {
-      "name": "Floor 01 Stage 14 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "27"
-    },
-    {
-      "name": "Floor 01 Stage 15 - Reward 1",
-      "region": "Floor 01",
-      "category": [
-        "Floor 01"
-      ],
-      "requires": "",
-      "sort-key": "29"
-    },
-    {
       "region": "Floor 01",
       "name": "Floor 01 Stage 1 - Reward 2",
       "category": [
@@ -144,6 +18,15 @@
       ],
       "requires": "",
       "sort-key": "2"
+    },
+    {
+      "name": "Floor 01 Stage 2 - Reward 1",
+      "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "3"
     },
     {
       "name": "Floor 01 Stage 2 - Reward 2",
@@ -155,6 +38,15 @@
       "sort-key": "4"
     },
     {
+      "name": "Floor 01 Stage 3 - Reward 1",
+      "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "5"
+    },
+    {
       "region": "Floor 01",
       "name": "Floor 01 Stage 3 - Reward 2",
       "category": [
@@ -162,6 +54,15 @@
       ],
       "requires": "",
       "sort-key": "6"
+    },
+    {
+      "name": "Floor 01 Stage 4 - Reward 1",
+      "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "7"
     },
     {
       "name": "Floor 01 Stage 4 - Reward 2",
@@ -173,8 +74,17 @@
       "sort-key": "8"
     },
     {
+      "name": "Floor 01 Stage 5 - Reward 1",
       "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "9"
+    },
+    {
       "name": "Floor 01 Stage 5 - Reward 2",
+      "region": "Floor 01",
       "category": [
         "Floor 01"
       ],
@@ -182,13 +92,31 @@
       "sort-key": "10"
     },
     {
+      "name": "Floor 01 Stage 6 - Reward 1",
       "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "11"
+    },
+    {
       "name": "Floor 01 Stage 6 - Reward 2",
+      "region": "Floor 01",
       "category": [
         "Floor 01"
       ],
       "requires": "",
       "sort-key": "12"
+    },
+    {
+      "name": "Floor 01 Stage 7 - Reward 1",
+      "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "13"
     },
     {
       "name": "Floor 01 Stage 7 - Reward 2",
@@ -200,8 +128,17 @@
       "sort-key": "14"
     },
     {
+      "name": "Floor 01 Stage 8 - Reward 1",
       "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "15"
+    },
+    {
       "name": "Floor 01 Stage 8 - Reward 2",
+      "region": "Floor 01",
       "category": [
         "Floor 01"
       ],
@@ -209,8 +146,17 @@
       "sort-key": "16"
     },
     {
+      "name": "Floor 01 Stage 9 - Reward 1",
       "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "17"
+    },
+    {
       "name": "Floor 01 Stage 9 - Reward 2",
+      "region": "Floor 01",
       "category": [
         "Floor 01"
       ],
@@ -218,8 +164,17 @@
       "sort-key": "18"
     },
     {
+      "name": "Floor 01 Stage 10 - Reward 1",
       "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "19"
+    },
+    {
       "name": "Floor 01 Stage 10 - Reward 2",
+      "region": "Floor 01",
       "category": [
         "Floor 01"
       ],
@@ -227,8 +182,17 @@
       "sort-key": "20"
     },
     {
+      "name": "Floor 01 Stage 11 - Reward 1",
       "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "21"
+    },
+    {
       "name": "Floor 01 Stage 11 - Reward 2",
+      "region": "Floor 01",
       "category": [
         "Floor 01"
       ],
@@ -236,8 +200,17 @@
       "sort-key": "22"
     },
     {
+      "name": "Floor 01 Stage 12 - Reward 1",
       "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "23"
+    },
+    {
       "name": "Floor 01 Stage 12 - Reward 2",
+      "region": "Floor 01",
       "category": [
         "Floor 01"
       ],
@@ -245,8 +218,17 @@
       "sort-key": "24"
     },
     {
+      "name": "Floor 01 Stage 13 - Reward 1",
       "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "25"
+    },
+    {
       "name": "Floor 01 Stage 13 - Reward 2",
+      "region": "Floor 01",
       "category": [
         "Floor 01"
       ],
@@ -254,8 +236,17 @@
       "sort-key": "26"
     },
     {
+      "name": "Floor 01 Stage 14 - Reward 1",
       "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "27"
+    },
+    {
       "name": "Floor 01 Stage 14 - Reward 2",
+      "region": "Floor 01",
       "category": [
         "Floor 01"
       ],
@@ -263,8 +254,17 @@
       "sort-key": "28"
     },
     {
+      "name": "Floor 01 Stage 15 - Reward 1",
       "region": "Floor 01",
+      "category": [
+        "Floor 01"
+      ],
+      "requires": "",
+      "sort-key": "29"
+    },
+    {
       "name": "Floor 01 Stage 15 - Reward 2",
+      "region": "Floor 01",
       "category": [
         "Floor 01"
       ],

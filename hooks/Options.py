@@ -32,6 +32,30 @@ class victoryCondition(Range):
     range_end = 15
     default = 5
     
+class floorProgression(Choice):
+    """
+        How do you want floor progression to be?
+        
+        Open : All stages are available from the start, only one Boss check
+        Runs : Runs are split by groups of 5 Stages, each ending in a Boss check
+    """
+    display_name = "Final Floor"
+    option_open = 1
+    option_runs = 2
+    default = 1
+
+class runAmount(OptionList):
+    """
+        Define how many runs per floor are needed.
+        Even if using the "Open" Floor progression, this will result in 5 x "number of runs" Stages all available.
+        
+        You must have 15 numbers in the list, but if you're stopping before Floor 15, those above your Goal won't be counted.
+        
+        Default is how the world was first intended to be played in v1.1.1 and below
+    """
+    display_name = "Run per Floor"
+    default = [3, 3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    
 class sinnerOption(OptionList):
     """
         Toggle Sinners to be included in the pool.
@@ -124,6 +148,8 @@ class startExclude(OptionList):
 # This is called before any manual options are defined, in case you want to define your own with a clean slate or let Manual define over them
 def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, Type[Option[Any]]]:
     options["victory_condition"] = victoryCondition
+    options["floor_prog"] = floorProgression
+    options["run_amount"] = runAmount
     options["sinner_included"] = sinnerOption
     options["sinner_start"] = sinnerStart
     options["sin_included"] = sinOption
