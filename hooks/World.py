@@ -65,6 +65,8 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
     
     playable_floors = floor_list.copy()
     run_amount_list = get_option_value(multiworld, player, "run_amount")
+    if len(run_amount_list) != 15:
+        raise ValueError("The option 'run_amount' has an incorrect number of values, there should be 15")
 
     for i in range(victory, 15):
         regions_to_remove.append(floor_list[i])
@@ -74,10 +76,14 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
         loc_print = []
         runs_list = ["Run 1", "Run 2", "Run 3", "Run 4", "Run 5"]
         run_amount = run_amount_list[i]
+        if run_amount > 5:
+            run_amount = 5
+        elif run_amount < 1:
+            run_amount = 1
         
         is_last_floor = i == len(playable_floors) - 1
         
-        if world.options.floor_prog.value == 2: #runs
+        if world.options.floor_progression.value == 2: #runs
             for location in world.location_name_to_location.items():
                 loc_cat = location[1]["category"]
                 loc_name = location[1]["name"]
@@ -116,7 +122,7 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
                     locationNamesToRemove.append(loc_name)
                     loc_print.append(loc_name)
             
-        if world.options.floor_prog.value == 1: #open
+        if world.options.floor_progression.value == 1: #open
                 print("open")
         
     for region in multiworld.regions:
@@ -166,10 +172,19 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
             item = next(i for i in item_pool if i.name == item_name)
             item_pool.remove(item)
             
-    if world.options.floor_prog.value == 2:
+    if world.options.floor_progression.value == 2:
         
         victory = get_option_value(multiworld, player, "victory_condition")
         boss_amount_list = get_option_value(multiworld, player, "run_amount")
+        
+        if len(boss_amount_list) != 15:
+            raise ValueError("The option 'run_amount' has an incorrect number of values, there should be 15")
+        
+        for amount in boss_amount_list:
+            if amount > 5:
+                amount = 5
+            elif amount < 1:
+                amount = 1
         
         floor_number = [
             "Floor 01", "Floor 02", "Floor 03", "Floor 04", "Floor 05", "Floor 06", "Floor 07",
@@ -177,7 +192,7 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
         ]
         
         for i in range(victory-1):
-            for amount in range(boss_amount_list[i]):
+            for amount in range(boss_amount_list[i]):                
                 if boss_amount_list[i] != 1:
                     item_pool.append(world.create_item(f"{floor_number[i]} Cleared"))
               
@@ -366,7 +381,7 @@ def after_create_item(item: ManualItem, world: World, multiworld: MultiWorld, pl
 
 # This method is run towards the end of pre-generation, before the place_item options have been handled and before AP generation occurs
 def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
-    if world.options.floor_prog.value == 2:
+    if world.options.floor_progression.value == 2:
         victory = get_option_value(multiworld, player, "victory_condition")
         boss_list = [
                 "Floor 05 Boss - Completion", "Floor 06 Boss - Completion", "Floor 07 Boss - Completion",
@@ -375,10 +390,28 @@ def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
                 "Floor 14 Boss - Completion", "Floor 15 Boss - Completion"
                 ]
         victory_location_name = boss_list[victory-5]
-        floor_number = [
-                    "Floor 01", "Floor 02", "Floor 03", "Floor 04", "Floor 05", "Floor 06", "Floor 07",
-                    "Floor 08", "Floor 09", "Floor 10", "Floor 11", "Floor 12", "Floor 13", "Floor 14", "Floor 15"
-                ]
+        
+        boss_amount_list = get_option_value(multiworld, player, "run_amount")
+                
+        if len(boss_amount_list) != 15:
+            raise ValueError("The option 'run_amount' has an incorrect number of values, there should be 15")
+        
+        for amount in boss_amount_list:
+            if amount > 5:
+                amount = 5
+            elif amount < 1:
+                amount = 1
+        
+        floor_number_list = [
+                "Floor 01", "Floor 02", "Floor 03", "Floor 04", "Floor 05", "Floor 06", "Floor 07",
+                "Floor 08", "Floor 09", "Floor 10", "Floor 11", "Floor 12", "Floor 13", "Floor 14", "Floor 15"
+            ]
+        
+        floor_number = []
+        
+        for i in range(len(boss_amount_list)):
+            if boss_amount_list[i] > 1:
+                floor_number.append(floor_number_list[i])
         
         boss_locations = [
             loc for loc in multiworld.get_locations(player)
@@ -395,19 +428,12 @@ def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
         print(f"There is {len(boss_locations)} bosses location : {boss_locations}")
         print(f"There is {len(prog)} items to place : {prog}")
         
-        for i in range (victory-1):
+        for i in range (len(floor_number)):
             for boss_loc in boss_locations:
                 if floor_number[i] in boss_loc.name:
-                    boss_loc.place_locked_item(prog[i])
-                    multiworld.itempool.remove(prog[i])
                     print(f"location for {floor_number[i]} found : {boss_loc}")
-                
-                    
-        
-        """ for i in range(len(boss_locations)):
-            boss_locations[i].place_locked_item(prog[i])
-            print(f"{boss_locations[i]} placed") """
-    
+                    boss_loc.place_locked_item(prog[i])
+                    multiworld.itempool.remove(prog[i])    
 
 # This method is run at the very end of pre-generation, once the place_item options have been handled and before AP generation occurs
 def after_generate_basic(world: World, multiworld: MultiWorld, player: int):

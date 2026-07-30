@@ -39,7 +39,7 @@ class floorProgression(Choice):
         Open : All stages are available from the start, only one Boss check
         Runs : Runs are split by groups of 5 Stages, each ending in a Boss check
     """
-    display_name = "Final Floor"
+    display_name = "Floor Progression"
     option_open = 1
     option_runs = 2
     default = 1
@@ -49,9 +49,15 @@ class runAmount(OptionList):
         Define how many runs per floor are included.
         Even if using the "Open" Floor progression, this will result in 5 x "number of runs" Stages all available.
         
-        The max amount of runs is 5 (and will be faulted to 5 if going above) and your final floor will always have 1 run.
+        The minimum amount of runs is 1 (and will be defaulted to 1 if going below)
+        The maximum amount of runs is 5 (and will be defaulted to 5 if going above)
+        Your final floor will always have 1 run.
         
-        You must have 15 numbers in the list, but if you're stopping before Floor 15, those above your Goal won't be counted.
+        You must have 15 numbers in the list, but if your goal is below Floor 15, the Floors above your Goal won't be counted.
+        
+        This option is better changed in the yaml itself than with the Options Creator.
+        You can do so by opening your yaml with any text editor app.
+        This format was used to avoid having 15 identical options.
         
         Default is how the world was first intended to be played in v1.1.1 and below
     """
@@ -124,24 +130,19 @@ class startExclude(OptionList):
         This makes it so you don't start with a Sin/Sinner combo that is unavailable to you.
         
         These Combos are excluded by default since there are no IDs that match them :
-        Yi Sang: Charge
-        Faust: Poise
-        Don Quixote: Burn, Sinking, Charge
-        Ryoshu: Sinking
-        Meursault: Charge
-        Honglu: Charge
-        Heathcliff: Burn
-        Ishmael: Rupture, Sinking, Charge
-        Rodion: Charge
-        Sinclair: Sinking, Poise, Charge
-        Outis: Charge
-        Gregor: Tremor, Poise, Charge
+        Yi Sang: Charge | Faust: Poise | Don Quixote: Burn, Sinking, Charge
+        Ryoshu: Sinking | Meursault: Charge | Honglu: Charge
+        Heathcliff: Burn | Ishmael: Rupture, Sinking, Charge | Rodion: Charge
+        Sinclair: Sinking, Poise, Charge | Outis: Charge | Gregor: Tremor, Poise, Charge
             
         Syntax must be "Sinner / Sin" in quotes.
         Exemple : "Yi Sang / Tremor" if you don't have a Tremor ID for Yi Sang
         
-        Spelling for Sinners : "Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"
-        Spelling for Sins : "Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"
+        Spelling for Sinners : "Yi Sang", "Faust", "Don Quixote",
+        "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael",
+        "Rodion", "Sinclair", "Outis", "Gregor"
+        Spelling for Sins : "Burn", "Bleed", "Tremor",
+        "Rupture", "Sinking", "Poise", "Charge"
     """
     display_name = "Excluded from Starting Combo"
     default = []
@@ -150,7 +151,7 @@ class startExclude(OptionList):
 # This is called before any manual options are defined, in case you want to define your own with a clean slate or let Manual define over them
 def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, Type[Option[Any]]]:
     options["victory_condition"] = victoryCondition
-    options["floor_prog"] = floorProgression
+    options["floor_progression"] = floorProgression
     options["run_amount"] = runAmount
     options["sinner_included"] = sinnerOption
     options["sinner_start"] = sinnerStart
@@ -174,6 +175,8 @@ def after_options_defined(options: Type[PerGameCommonOptions]):
 # Use this Hook if you want to add your Option to an Option group (existing or not)
 def before_option_groups_created(groups: dict[str, list[Type[Option[Any]]]]) -> dict[str, list[Type[Option[Any]]]]:
     # Uses the format groups['GroupName'] = [TotalCharactersToWinWith]
+    groups['Progression'] = [victoryCondition, floorProgression, runAmount]
+    groups['Identities'] = [sinnerOption, sinnerStart, sinOption, sinStart, startExclude]
     return groups
 
 def after_option_groups_created(groups: list[OptionGroup]) -> list[OptionGroup]:
