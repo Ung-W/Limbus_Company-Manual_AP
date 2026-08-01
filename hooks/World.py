@@ -97,10 +97,10 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
 
             if not is_last_floor:
                 if run_amount == 1 and is_finalRun:
-                    if "Completion" in loc_name and loc_name != f"{playable_floors[i]} Boss - Completion":
+                    if "Completion" in loc_name and not loc_name.endswith("Boss - Completion"):
                         locationNamesToRemove.append(loc_name)
                         loc_print.append(loc_name)
-                    if "Reward" in loc_name:
+                    if loc_name.endswith("Reward"):
                         locationNamesToRemove.append(loc_name)
                         loc_print.append(loc_name)
                     continue
@@ -111,10 +111,10 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
                     continue
                 
             elif is_finalRun:
-                if "Completion" in loc_name and loc_name != f"{playable_floors[i]} Boss - Completion":
+                if "Completion" in loc_name and not loc_name.endswith("Boss - Completion"):
                     locationNamesToRemove.append(loc_name)
                     loc_print.append(loc_name)
-                if "Reward" in loc_name:
+                if loc_name.endswith("Reward"):
                     locationNamesToRemove.append(loc_name)
                     loc_print.append(loc_name)
                     
@@ -134,8 +134,6 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
                     
     if world.options.floor_progression.value == 2: # If "Runs" selected, "requires" field to needing "Floor x Cleared" items when necessary                         
         for loc in world.location_name_to_location.items():
-            print(f"Checking location {loc} for access rule changes")
-
             category = loc[1]["category"]
 
             floor = next((f for f in floor_list if f in category), None)
@@ -143,8 +141,10 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
 
             if floor is None or run is None:
                 continue
-            
-            loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run)}|"
+            if loc[1]["name"].endswith("Reward"):
+                loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run) + 1}|"
+            else:
+                loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run)}|"
                           
         
 
@@ -438,13 +438,9 @@ def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
         
         prog = list(dict.fromkeys(prog))
         
-        print(f"There is {len(boss_locations)} bosses location : {boss_locations}")
-        print(f"There is {len(prog)} items to place : {prog}")
-        
         for i in range (len(floor_number)):
             for boss_loc in boss_locations:
                 if floor_number[i] in boss_loc.name:
-                    print(f"location for {floor_number[i]} found : {boss_loc}")
                     boss_loc.place_locked_item(prog[i])
                     multiworld.itempool.remove(prog[i])    
 
