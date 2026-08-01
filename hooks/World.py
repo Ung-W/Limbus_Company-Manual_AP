@@ -72,9 +72,10 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
         regions_to_remove.append(floor_list[i])
         playable_floors.remove(floor_list[i])
         
+    runs_list = ["Run 1", "Run 2", "Run 3", "Run 4", "Run 5"]
+        
     for i in range(len(playable_floors)):
         loc_print = []
-        runs_list = ["Run 1", "Run 2", "Run 3", "Run 4", "Run 5"]
         run_amount = run_amount_list[i]
         if run_amount > 5:
             run_amount = 5
@@ -83,47 +84,43 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
         
         is_last_floor = i == len(playable_floors) - 1
         
-        if world.options.floor_progression.value == 2: #runs
-            for location in world.location_name_to_location.items():
-                loc_cat = location[1]["category"]
-                loc_name = location[1]["name"]
-                
-                is_finalRun = any(run in loc_cat for run in ["Run 0", "Run 1"])
-                is_invalidRun = not any(run in loc_cat for run in runs_list[:run_amount]) # Run included in yaml settings
-                
-                
-                if playable_floors[i] not in loc_cat:
-                    continue
+        for location in world.location_name_to_location.items():
+            loc_cat = location[1]["category"]
+            loc_name = location[1]["name"]
+            
+            is_finalRun = any(run in loc_cat for run in ["Run 0", "Run 1"])
+            is_invalidRun = not any(run in loc_cat for run in runs_list[:run_amount]) # Run included in yaml settings
+            
+            
+            if playable_floors[i] not in loc_cat:
+                continue
 
-                if not is_last_floor:
-                    if run_amount == 1 and is_finalRun:
-                        if "Completion" in loc_name and loc_name != f"{playable_floors[i]} Boss - Completion":
-                            locationNamesToRemove.append(loc_name)
-                            loc_print.append(loc_name)
-                        if "Reward" in loc_name:
-                            locationNamesToRemove.append(loc_name)
-                            loc_print.append(loc_name)
-                        continue
-                            
-                    if is_invalidRun:
-                        locationNamesToRemove.append(loc_name)
-                        loc_print.append(loc_name)
-                        continue
-                    
-                elif is_finalRun:
+            if not is_last_floor:
+                if run_amount == 1 and is_finalRun:
                     if "Completion" in loc_name and loc_name != f"{playable_floors[i]} Boss - Completion":
                         locationNamesToRemove.append(loc_name)
                         loc_print.append(loc_name)
                     if "Reward" in loc_name:
                         locationNamesToRemove.append(loc_name)
                         loc_print.append(loc_name)
+                    continue
                         
-                else:
+                if is_invalidRun:
                     locationNamesToRemove.append(loc_name)
                     loc_print.append(loc_name)
-            
-        if world.options.floor_progression.value == 1: #open
-                print("open")
+                    continue
+                
+            elif is_finalRun:
+                if "Completion" in loc_name and loc_name != f"{playable_floors[i]} Boss - Completion":
+                    locationNamesToRemove.append(loc_name)
+                    loc_print.append(loc_name)
+                if "Reward" in loc_name:
+                    locationNamesToRemove.append(loc_name)
+                    loc_print.append(loc_name)
+                    
+            else:
+                locationNamesToRemove.append(loc_name)
+                loc_print.append(loc_name)
         
     for region in multiworld.regions:
         if region.player == player:
@@ -134,6 +131,22 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
             for location in list(region.locations):
                 if location.name in locationNamesToRemove:
                     region.locations.remove(location)
+                    
+    if world.options.floor_progression.value == 2: # If "Runs" selected, "requires" field to needing "Floor x Cleared" items when necessary                         
+        for loc in world.location_name_to_location.items():
+            print(f"Checking location {loc} for access rule changes")
+
+            category = loc[1]["category"]
+
+            floor = next((f for f in floor_list if f in category), None)
+            run = next((r for r in runs_list if r in category), None)
+
+            if floor is None or run is None:
+                continue
+            
+            loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run)}|"
+                          
+        
 
 # This hook allows you to access the item names & counts before the items are created. Use this to increase/decrease the amount of a specific item in the pool
 # Valid item_config key/values:
@@ -172,7 +185,7 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
             item = next(i for i in item_pool if i.name == item_name)
             item_pool.remove(item)
             
-    if world.options.floor_progression.value == 2:
+    if world.options.floor_progression.value == 2: # If "Runs" selected, create the appropriate "Floor x Cleared" Item
         
         victory = get_option_value(multiworld, player, "victory_condition")
         boss_amount_list = get_option_value(multiworld, player, "run_amount")
@@ -381,7 +394,7 @@ def after_create_item(item: ManualItem, world: World, multiworld: MultiWorld, pl
 
 # This method is run towards the end of pre-generation, before the place_item options have been handled and before AP generation occurs
 def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
-    if world.options.floor_progression.value == 2:
+    if world.options.floor_progression.value == 2: # If "Runs" Selected, palce the appropriate "Floor x Cleared" on bosses
         victory = get_option_value(multiworld, player, "victory_condition")
         boss_list = [
                 "Floor 05 Boss - Completion", "Floor 06 Boss - Completion", "Floor 07 Boss - Completion",
