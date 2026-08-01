@@ -31,7 +31,7 @@ import logging
 ## The fill_slot_data method will be used to send data to the Manual client for later use, like deathlink.
 ########################################################################################
 
-
+RUN_AMOUNT_LIST = []
 
 # Use this function to change the valid filler items to be created to replace item links or starting items.
 # Default value is the `filler_item_name` from game.json
@@ -47,6 +47,24 @@ def before_generate_early(world: World, multiworld: MultiWorld, player: int) -> 
 
 # Called before regions and locations are created. Not clear why you'd want this, but it's here. Victory location is included, but Victory event is not placed yet.
 def before_create_regions(world: World, multiworld: MultiWorld, player: int):
+    global RUN_AMOUNT_LIST
+    RUN_AMOUNT_LIST = [
+        world.options.floor_1,
+        world.options.floor_2,
+        world.options.floor_3,
+        world.options.floor_4,
+        world.options.floor_5,
+        world.options.floor_6,
+        world.options.floor_7,
+        world.options.floor_8,
+        world.options.floor_9,
+        world.options.floor_10,
+        world.options.floor_11,
+        world.options.floor_12,
+        world.options.floor_13,
+        world.options.floor_14,
+        world.options.floor_15
+    ]
     pass
 
 # Called after regions and locations are created, in case you want to see or modify that information. Victory location is included.
@@ -64,9 +82,7 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
             ]
     
     playable_floors = floor_list.copy()
-    run_amount_list = get_option_value(multiworld, player, "run_amount")
-    if len(run_amount_list) != 15:
-        raise ValueError("The option 'run_amount' has an incorrect number of values, there should be 15")
+    global RUN_AMOUNT_LIST
 
     for i in range(victory, 15):
         regions_to_remove.append(floor_list[i])
@@ -76,7 +92,7 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
         
     for i in range(len(playable_floors)):
         loc_print = []
-        run_amount = run_amount_list[i]
+        run_amount = RUN_AMOUNT_LIST[i]
         if run_amount > 5:
             run_amount = 5
         elif run_amount < 1:
@@ -188,16 +204,7 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
     if world.options.floor_progression.value == 2: # If "Runs" selected, create the appropriate "Floor x Cleared" Item
         
         victory = get_option_value(multiworld, player, "victory_condition")
-        boss_amount_list = get_option_value(multiworld, player, "run_amount")
-        
-        if len(boss_amount_list) != 15:
-            raise ValueError("The option 'run_amount' has an incorrect number of values, there should be 15")
-        
-        for amount in boss_amount_list:
-            if amount > 5:
-                amount = 5
-            elif amount < 1:
-                amount = 1
+        global RUN_AMOUNT_LIST
         
         floor_number = [
             "Floor 01", "Floor 02", "Floor 03", "Floor 04", "Floor 05", "Floor 06", "Floor 07",
@@ -205,8 +212,8 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
         ]
         
         for i in range(victory-1):
-            for amount in range(boss_amount_list[i]):                
-                if boss_amount_list[i] != 1:
+            for amount in range(RUN_AMOUNT_LIST[i]):                
+                if RUN_AMOUNT_LIST[i] != 1:
                     item_pool.append(world.create_item(f"{floor_number[i]} Cleared"))
               
     victory = get_option_value(multiworld, player, "victory_condition")
@@ -404,16 +411,7 @@ def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
                 ]
         victory_location_name = boss_list[victory-5]
         
-        boss_amount_list = get_option_value(multiworld, player, "run_amount")
-                
-        if len(boss_amount_list) != 15:
-            raise ValueError("The option 'run_amount' has an incorrect number of values, there should be 15")
-        
-        for amount in boss_amount_list:
-            if amount > 5:
-                amount = 5
-            elif amount < 1:
-                amount = 1
+        global RUN_AMOUNT_LIST
         
         floor_number_list = [
                 "Floor 01", "Floor 02", "Floor 03", "Floor 04", "Floor 05", "Floor 06", "Floor 07",
@@ -422,8 +420,8 @@ def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
         
         floor_number = []
         
-        for i in range(len(boss_amount_list)):
-            if boss_amount_list[i] > 1:
+        for i in range(len(RUN_AMOUNT_LIST)):
+            if RUN_AMOUNT_LIST[i] > 1:
                 floor_number.append(floor_number_list[i])
         
         boss_locations = [

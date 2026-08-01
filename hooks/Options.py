@@ -1,5 +1,5 @@
 # Object classes from AP that represent different types of options that you can create
-from Options import Option, FreeText, NumericOption, Toggle, DefaultOnToggle, Choice, TextChoice, Range, NamedRange, OptionGroup, PerGameCommonOptions, OptionList
+from Options import Option, FreeText, NumericOption, Toggle, DefaultOnToggle, Choice, TextChoice, Range, NamedRange, OptionGroup, PerGameCommonOptions, OptionList, OptionSet
 # These helper methods allow you to determine if an option has been set, or what its value is, for any player in the multiworld
 from ..Helpers import is_option_enabled, get_option_value
 from typing import Type, Any
@@ -38,33 +38,161 @@ class floorProgression(Choice):
         
         Open : All stages are available from the start, only one Boss check
         Runs : Runs are split by groups of 5 Stages, each ending in a Boss check
+        
+        The next options will determine how many sets of 5 stages (regardlesss of this choice) will be generated
     """
     display_name = "Floor Progression"
     option_open = 1
     option_runs = 2
     default = 1
 
-class runAmount(OptionList):
+class floor1(Range):
     """
-        Define how many runs per floor are included.
-        Even if using the "Open" Floor progression, this will result in 5 x "number of runs" Stages all available.
-        
-        The minimum amount of runs is 1 (and will be defaulted to 1 if going below)
-        The maximum amount of runs is 5 (and will be defaulted to 5 if going above)
-        Your final floor will always have 1 run.
-        
-        You must have 15 numbers in the list, but if your goal is below Floor 15, the Floors above your Goal won't be counted.
-        
-        This option is better changed in the yaml itself than with the Options Creator.
-        You can do so by opening your yaml with any text editor app.
-        This format was used to avoid having 15 identical options.
-        
-        Default is how the world was first intended to be played in v1.1.1 and below
+        Define how many runs for Floor 1 are included.
     """
-    display_name = "Run per Floor"
-    default = [3, 3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    display_name = "Floor 1 Runs"
+    range_start = 1
+    range_end = 5
+    default = 3
     
-class sinnerOption(OptionList):
+class floor2(Range):
+    """
+        Define how many runs for Floor 2 are included.
+    """
+    display_name = "Floor 2 Runs"
+    range_start = 1
+    range_end = 5
+    default = 3
+    
+class floor3(Range):
+    """
+        Define how many runs for Floor 3 are included.
+    """
+    display_name = "Floor 3 Runs"
+    range_start = 1
+    range_end = 5
+    default = 2
+    
+class floor4(Range):
+    """
+        Define how many runs for Floor 4 are included.
+    """
+    display_name = "Floor 4 Runs"
+    range_start = 1
+    range_end = 5
+    default = 2
+    
+class floor5(Range):
+    """
+        Define how many runs for Floor 5 are included.
+        Ignored if this is your Final Floor. (will default to 1)
+    """
+    display_name = "Floor 5 Runs"
+    range_start = 1
+    range_end = 5
+    default = 1
+    
+class floor6(Range):
+    """
+        Define how many runs for Floor 6 are included.
+        Ignored if this is your Final Floor, or if your Final Floor is below.  (will default to 1)
+    """
+    display_name = "Floor 6 Runs"
+    range_start = 1
+    range_end = 5
+    default = 1
+    
+class floor7(Range):
+    """
+        Define how many runs for Floor 7 are included.
+        Ignored if this is your Final Floor, or if your Final Floor is below. (will default to 1)
+    """
+    display_name = "Floor 7 Runs"
+    range_start = 1
+    range_end = 5
+    default = 1
+    
+class floor8(Range):
+    """
+        Define how many runs for Floor 8 are included.
+        Ignored if this is your Final Floor, or if your Final Floor is below. (will default to 1)
+    """
+    display_name = "Floor 8 Runs"
+    range_start = 1
+    range_end = 5
+    default = 1
+    
+class floor9(Range):
+    """
+        Define how many runs for Floor 9 are included.
+        Ignored if this is your Final Floor, or if your Final Floor is below. (will default to 1)
+    """
+    display_name = "Floor 9 Runs"
+    range_start = 1
+    range_end = 5
+    default = 1
+    
+class floor10(Range):
+    """
+        Define how many runs for Floor 10 are included.
+        Ignored if this is your Final Floor, or if your Final Floor is below. (will default to 1)
+    """
+    display_name = "Floor 10 Runs"
+    range_start = 1
+    range_end = 5
+    default = 1
+    
+class floor11(Range):
+    """
+        Define how many runs for Floor 11 are included.
+        Ignored if this is your Final Floor, or if your Final Floor is below. (will default to 1)
+    """
+    display_name = "Floor 11 Runs"
+    range_start = 1
+    range_end = 5
+    default = 1
+    
+class floor12(Range):
+    """
+        Define how many runs for Floor 12 are included.
+        Ignored if this is your Final Floor, or if your Final Floor is below. (will default to 1)
+    """
+    display_name = "Floor 12 Runs"
+    range_start = 1
+    range_end = 5
+    default = 1
+    
+class floor13(Range):
+    """
+        Define how many runs for Floor 13 are included.
+        Ignored if this is your Final Floor, or if your Final Floor is below. (will default to 1)
+    """
+    display_name = "Floor 13 Runs"
+    range_start = 1
+    range_end = 5
+    default = 1
+    
+class floor14(Range):
+    """
+        Define how many runs for Floor 14 are included.
+        Ignored if this is your Final Floor, or if your Final Floor is below. (will default to 1)
+    """
+    display_name = "Floor 14 Runs"
+    range_start = 1
+    range_end = 5
+    default = 1
+    
+class floor15(Range):
+    """
+        Define how many runs for Floor 15 are included.
+        Ignored if this is your Final Floor, or if your Final Floor is below. (will default to 1)
+    """
+    display_name = "Floor 15 Runs"
+    range_start = 1
+    range_end = 5
+    default = 1
+    
+class sinnerOption(OptionSet):
     """
         Toggle Sinners to be included in the pool.
         
@@ -76,6 +204,7 @@ class sinnerOption(OptionList):
         Possible values are : "Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"
     """
     display_name = "Sinners Included"
+    valid_keys = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
     default = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
     
 class sinnerStart(Choice):
@@ -99,13 +228,14 @@ class sinnerStart(Choice):
     option_gregor = 11
     default = 12
     
-class sinOption(OptionList):
+class sinOption(OptionSet):
     """
         Toggle Sins to be included in the pool.
             
         Possible values are : "Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"
     """
     display_name = "Sins Included"
+    valid_keys = ["Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"]
     default = ["Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"]
     
 class sinStart(Choice):
@@ -152,7 +282,21 @@ class startExclude(OptionList):
 def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, Type[Option[Any]]]:
     options["victory_condition"] = victoryCondition
     options["floor_progression"] = floorProgression
-    options["run_amount"] = runAmount
+    options["floor_1"] = floor1
+    options["floor_2"] = floor2
+    options["floor_3"] = floor3
+    options["floor_4"] = floor4
+    options["floor_5"] = floor5
+    options["floor_6"] = floor6
+    options["floor_7"] = floor7
+    options["floor_8"] = floor8
+    options["floor_9"] = floor9
+    options["floor_10"] = floor10
+    options["floor_11"] = floor11
+    options["floor_12"] = floor12
+    options["floor_13"] = floor13
+    options["floor_14"] = floor14
+    options["floor_15"] = floor15
     options["sinner_included"] = sinnerOption
     options["sinner_start"] = sinnerStart
     options["sin_included"] = sinOption
@@ -175,7 +319,7 @@ def after_options_defined(options: Type[PerGameCommonOptions]):
 # Use this Hook if you want to add your Option to an Option group (existing or not)
 def before_option_groups_created(groups: dict[str, list[Type[Option[Any]]]]) -> dict[str, list[Type[Option[Any]]]]:
     # Uses the format groups['GroupName'] = [TotalCharactersToWinWith]
-    groups['Progression'] = [victoryCondition, floorProgression, runAmount]
+    groups['Progression'] = [victoryCondition, floorProgression, floor1, floor2, floor3, floor4, floor5, floor6, floor7, floor8, floor9, floor10, floor11, floor12, floor13, floor14, floor15]
     groups['Identities'] = [sinnerOption, sinnerStart, sinOption, sinStart, startExclude]
     return groups
 
