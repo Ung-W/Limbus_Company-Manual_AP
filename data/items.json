@@ -432,6 +432,38 @@
         "VICTORY"
       ],
       "progression_skip_balancing": true
+    },
+    {
+      "count": 0,
+      "name": "Missing some sinners to reach your goal, adding random ones, on the House",
+      "category": [
+        "Sinner"
+      ],
+      "useful": true
+    },
+    {
+      "count": 0,
+      "name": "Starting Sinner in yaml is not included in the randomization, get a random one instead :)",
+      "category": [
+        "Sinner"
+      ],
+      "useful": true
+    },
+    {
+      "count": 0,
+      "name": "Starting Sin in yaml is not included in the randomization, get a random one instead :)",
+      "category": [
+        "Sin"
+      ],
+      "useful": true
+    },
+    {
+      "count": 0,
+      "name": "Starting Sin didn't have a match with the Starting Sinner, here's one that does",
+      "category": [
+        "Sin"
+      ],
+      "useful": true
     }
   ]
 }

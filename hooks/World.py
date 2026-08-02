@@ -77,9 +77,9 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
     victory = get_option_value(multiworld, player, "victory_condition")
     
     floor_list = [
-                "Floor 01", "Floor 02", "Floor 03", "Floor 04", "Floor 05", "Floor 06", "Floor 07",
-                "Floor 08", "Floor 09", "Floor 10", "Floor 11", "Floor 12", "Floor 13", "Floor 14", "Floor 15"
-            ]
+        "Floor 01", "Floor 02", "Floor 03", "Floor 04", "Floor 05", "Floor 06", "Floor 07",
+        "Floor 08", "Floor 09", "Floor 10", "Floor 11", "Floor 12", "Floor 13", "Floor 14", "Floor 15"
+    ]
     
     playable_floors = floor_list.copy()
     global RUN_AMOUNT_LIST
@@ -148,21 +148,31 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
                 if location.name in locationNamesToRemove:
                     region.locations.remove(location)
                     
-    if world.options.floor_progression.value == 2: # If "Runs" selected, "requires" field to needing "Floor x Cleared" items when necessary                         
+    if get_option_value(multiworld, player, "floor_progression") == 2: # If "Runs" selected, change "requires" field to needing "Floor x Cleared" items when necessary
+        removed_floors = set(regions_to_remove)                       
+
         for loc in world.location_name_to_location.items():
             category = loc[1]["category"]
+            
+            if any(floor in category for floor in removed_floors):
+                continue
 
             floor = next((f for f in floor_list if f in category), None)
             run = next((r for r in runs_list if r in category), None)
 
             if floor is None or run is None:
                 continue
+            if floor == "Floor 15":
+                continue
+            
             if loc[1]["name"].endswith("Reward"):
                 loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run) + 1}|"
             else:
                 loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run)}|"
-                          
-        
+    
+    elif get_option_value(multiworld, player, "floor_progression") == 1: # If "Open" selected, make sure the "requires" field is not in the location
+        for loc in world.location_name_to_location.items():
+            loc[1].pop("requires", None)        
 
 # This hook allows you to access the item names & counts before the items are created. Use this to increase/decrease the amount of a specific item in the pool
 # Valid item_config key/values:
@@ -201,7 +211,7 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
             item = next(i for i in item_pool if i.name == item_name)
             item_pool.remove(item)
             
-    if world.options.floor_progression.value == 2: # If "Runs" selected, create the appropriate "Floor x Cleared" Item
+    if get_option_value(multiworld, player, "floor_progression") == 2: # If "Runs" selected, create the appropriate "Floor x Cleared" Item
         
         victory = get_option_value(multiworld, player, "victory_condition")
         global RUN_AMOUNT_LIST
@@ -246,6 +256,7 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
 # The item pool after starting items are processed but before filler is added, in case you want to see the raw item pool at that stage
 def before_create_items_filler(item_pool: list, world: World, multiworld: MultiWorld, player: int) -> list:
     starting_items = []
+    wrong_settings_list = []
     full_sinner_list = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
     full_sin_list = ["Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"]
     
@@ -284,6 +295,32 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
     # If Sinner has no excluded combo, add every possibility to starting items
     for sinner in sinner_list:
         sin_included[sinner] = [sin for sin in sin_list if sin not in sin_excluded[sinner]]
+        
+    # Sinner Processing    
+    
+    required_sinners = 0
+    missing_sinners_chk = False
+
+    if world.options.victory_condition.value >= 13:
+        required_sinners = 12
+    elif world.options.victory_condition.value >= 8:
+        required_sinners = 7
+    elif world.options.victory_condition.value >= 5:
+        required_sinners = 3
+
+    if len(sinner_list) < required_sinners:
+        missing_sinners_chk = True
+        miss_sinner_itm = "Missing some sinners to reach your goal, adding random ones, on the House"
+        wrong_settings_list.append([miss_sinner_itm])
+        item_pool.append(world.create_item(miss_sinner_itm))
+
+        missing = [s for s in full_sinner_list if s not in sinner_list]
+        random_sinners = world.random.sample(missing, required_sinners - len(sinner_list))
+        sinner_list.extend(random_sinners)
+
+        for sinner in random_sinners:
+            if not any(item.player == player and item.name == sinner for item in item_pool):
+                item_pool.append(world.create_item(sinner))
            
     if sinner_start == 12: 
         starting_items += [
@@ -294,16 +331,66 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
         ]
     else:
         if full_sinner_list[sinner_start] not in sinner_list:
-            raise ValueError(f'Yaml option "sinner_start" misconfigured, the Sinner selected is not part of the randomization')
+            wrong_sinner_itm = f"Starting Sinner in yaml is not included in the randomization, get a random one instead :)"
+            wrong_settings_list.append([wrong_sinner_itm])
+            item_pool.append(world.create_item(wrong_sinner_itm))
+                
+            starting_items += [
+                {
+                    "items": sinner_list,
+                    "random": 1
+                }
+            ]
+            
+            starting_items += [
+                {
+                    "items": [wrong_sinner_itm],
+                    "random": 1
+                }
+            ]
+        else:
+            starting_items += [
+                {
+                    "items": [full_sinner_list[sinner_start]],
+                    "random": 1
+                }
+            ]
+    
+    if missing_sinners_chk:
         starting_items += [
             {
-                "items": [full_sinner_list[sinner_start]],
+                "items": [miss_sinner_itm],
                 "random": 1
             }
         ]
         
+    # Sin Processing
+
+    missing_sin_chk = False
+    no_match_itm = f"Starting Sin didn't have a match with the Starting Sinner, here's one that does"
+        
     if sin_start == 7:
         for sinner in sinner_list:
+            
+            if not sin_included[sinner]:
+                if not missing_sin_chk:
+                    missing_sin_chk = True
+                    item_pool.append(world.create_item(no_match_itm))
+                
+                sin_included[sinner] = [sin for sin in full_sin_list if sin not in sin_excluded[sinner]]
+                
+                random_sin = world.random.choice(sin_included[sinner])
+                if not any(item.player == player and item.name == random_sin for item in item_pool):
+                    item_pool.append(world.create_item(random_sin))
+                
+                starting_items += [
+                    {
+                        "previous_item": sinner,
+                        "items": [no_match_itm],
+                        "random": 1
+                    }
+                ]
+            
             starting_items += [
                 {
                     "previous_item": sinner,
@@ -313,23 +400,79 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
             ]
     else:
         if full_sin_list[sin_start] not in sin_list:
-            raise ValueError(f'Yaml option "sin_start" misconfigured, the Sin selected is not part of the randomization')
-        for sinner in sinner_list:
-            if full_sin_list[sin_start] in sin_excluded[sinner]:
-                raise ValueError(f'Yaml option "sin_start" misconfigured, the Sin selected clashes with the list of excluded Combos.\nIf you\'re using "sinner_start"\'s "random_sinner" option, make sure that every Sinner randomized are compliant or weight each compliant Sinner individually for a soft random')
-            
+            wrong_sin_itm = f"Starting Sin in yaml is not included in the randomization, get a random one instead :)"
+            wrong_settings_list.append([wrong_sin_itm])
+            item_pool.append(world.create_item(wrong_sin_itm))
             starting_items += [
                 {
-                    "previous_item": sinner,
-                    "items": [full_sin_list[sin_start]],
+                    "items": [wrong_sin_itm],
                     "random": 1
                 }
             ]
+            
+            for sinner in sinner_list:
+                
+                if not sin_included[sinner]:
+                    sin_included[sinner] = [sin for sin in full_sin_list if sin not in sin_excluded[sinner]]
+                    
+                    random_sin = world.random.choice(sin_included[sinner])
+                    if not any(item.player == player and item.name == random_sin for item in item_pool):
+                        item_pool.append(world.create_item(random_sin))
+                    
+                starting_items += [
+                    {
+                        "previous_item": sinner,
+                        "items": sin_included[sinner],
+                        "random": 1
+                    }
+                ]
+        else:
+            
+            for sinner in sinner_list:
+                if full_sin_list[sin_start] not in sin_included[sinner]:
+                    if not missing_sin_chk:
+                        missing_sin_chk = True
+                        item_pool.append(world.create_item(no_match_itm))
+                    
+                    sin_included[sinner] = [sin for sin in full_sin_list if sin not in sin_excluded[sinner]]
+                    
+                    random_sin = world.random.choice(sin_included[sinner])
+                    if not any(item.player == player and item.name == random_sin for item in item_pool):
+                        item_pool.append(world.create_item(random_sin))
+                    
+                    starting_items += [
+                        {
+                            "previous_item": sinner,
+                            "items": [no_match_itm],
+                            "random": 1
+                        }
+                    ]
+                    
+                    starting_items += [
+                        {
+                            "previous_item": sinner,
+                            "items": [random_sin],
+                            "random": 1
+                        }
+                    ]
+                
+                else :
+                    starting_items += [
+                        {
+                            "previous_item": sinner,
+                            "items": [full_sin_list[sin_start]],
+                            "random": 1
+                        }
+                    ]
         
     sinner_selected = ""
     
     for starting in starting_items:
-        if sinner_selected == "" or sinner_selected == starting['previous_item']:
+        if (
+            sinner_selected == ""
+            or starting.get('items') in wrong_settings_list
+            or sinner_selected == starting.get('previous_item')
+        ):
             # get all items that have at least the category or categories we want
             possible_item_names = starting['items']
             
@@ -341,6 +484,12 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
                 i for i in item_pool 
                     if i.name in possible_item_names
             ]
+            
+            if not possible_items:
+                print("EMPTY POSSIBLE ITEMS")
+                print("Starting data:", starting)
+                print("Item pool names:", [i.name for i in item_pool])
+                raise Exception("No possible starting item")
             
             # pick a random possible item(s) to start with, then precollect them and,
             #   since we just took them, remove them from the item pool
@@ -401,7 +550,7 @@ def after_create_item(item: ManualItem, world: World, multiworld: MultiWorld, pl
 
 # This method is run towards the end of pre-generation, before the place_item options have been handled and before AP generation occurs
 def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
-    if world.options.floor_progression.value == 2: # If "Runs" Selected, palce the appropriate "Floor x Cleared" on bosses
+    if get_option_value(multiworld, player, "floor_progression") == 2: # If "Runs" Selected, palce the appropriate "Floor x Cleared" on bosses
         victory = get_option_value(multiworld, player, "victory_condition")
         boss_list = [
                 "Floor 05 Boss - Completion", "Floor 06 Boss - Completion", "Floor 07 Boss - Completion",
@@ -429,18 +578,29 @@ def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
                 if "Completion" in loc.name and loc.name != victory_location_name and "Boss - Completion" not in loc.name
         ]
         
+        boss_by_floor = {}
+
+        for loc in boss_locations:
+            for floor in floor_number:
+                if floor in loc.name:
+                    boss_by_floor.setdefault(floor, []).append(loc)
+        
         prog = [
                 i for i in multiworld.get_items()
                     if i.player == player and "Cleared" in i.name and i.name != "Final Floor Cleared"
             ]
         
-        prog = list(dict.fromkeys(prog))
-        
-        for i in range (len(floor_number)):
-            for boss_loc in boss_locations:
-                if floor_number[i] in boss_loc.name:
-                    boss_loc.place_locked_item(prog[i])
-                    multiworld.itempool.remove(prog[i])    
+        prog_by_floor = {}
+
+        for item in prog:
+            prog_by_floor.setdefault(item.name, []).append(item)
+                    
+        for floor in floor_number:
+            cleared_items = prog_by_floor.get(f"{floor} Cleared", [])
+
+            for boss_loc, item_to_place in zip(boss_by_floor.get(floor, []), cleared_items):
+                boss_loc.place_locked_item(item_to_place)
+                multiworld.itempool.remove(item_to_place)
 
 # This method is run at the very end of pre-generation, once the place_item options have been handled and before AP generation occurs
 def after_generate_basic(world: World, multiworld: MultiWorld, player: int):
