@@ -37,6 +37,8 @@ You must beat your **Final Floor**
 
 - One Sinner (random or not)
 - One Sin (random or not)
+- 1 Ego Gifts Slots x5 (not shown in client)
+- 1 Sinner Slot +1 (not shown in the client)
 
 > You can choose to exclude combos of Sin / Sinner if you don't have an ID that match or just if you want to., so that you don't start with a combo that you can't use.
 >
