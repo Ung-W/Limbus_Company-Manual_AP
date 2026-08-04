@@ -87,7 +87,8 @@ def run_progression_selected(world, floor_list, runs_list, unplayableFloors):
             
 def open_progression_selected(world):
     for loc in world.location_name_to_location.items():
-        loc[1].pop("requires", None)
+        if loc[1]["category"] != "VICTORY":
+            loc[1].pop("requires", None)
         
 def get_required_sinners(win_cond):
     if win_cond >= 13:

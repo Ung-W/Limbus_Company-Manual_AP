@@ -543,6 +543,7 @@
       "category": [
         "VICTORY"
       ],
+      "region" : "VICTORY",
       "requires": "|Final Floor Cleared|"
     }
   ]

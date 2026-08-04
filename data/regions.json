@@ -60,5 +60,9 @@
   "Floor 15": {
     "connects_to": [],
     "requires": "|Progressive Floor:14| AND |@Sinner:12| AND |Sinner slot +1:11|"
+  },
+  "VICTORY": {
+    "connects_to": [],
+    "requires": "|Final Floor Cleared|"
   }
 }

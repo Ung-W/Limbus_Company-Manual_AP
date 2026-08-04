@@ -4,9 +4,9 @@ Made by EchoingEito with the help of Evoker
 
 ## Goal
 
-You must beat your final Floor
+You must beat your **Final Floor**
 
-> Can define if you want your final floor to be Floor 5, Floor 10 or Floor 15
+> Can define if you want your final floor to be between Floor 5 and 15 
  
 ## Randomization
 
@@ -38,10 +38,36 @@ You must beat your final Floor
 - One Sinner (random or not)
 - One Sin (random or not)
 
-## Locations
+> You can choose to exclude combos of Sin / Sinner if you don't have an ID that match or just if you want to., so that you don't start with a combo that you can't use.
+>
+> The following combos are disabled by default
 
-- Floor 1 has 15 stages and gives 2 checks per Stage
-- Floor 2 also has 15 stages but gives 1 check per Stage, onward every floor gives 1 checks per Stage
-- Floor 3 and 4 has 10 stages
-- Floor 5 to 15 has 5 stages
-- One check for beating a floor boss
+|Sinner|Sin|
+|:-:|:-:|
+|Yi Sang|Charge|
+|Faust|Poise|
+|Don Quixote|Burn, Sinking, Charge|
+|Ryoshu|Sinking|
+|Meursault|Charge|
+|Honglu|Charge|
+|Heathcliff|Burn|
+|Ishmael|Rupture, Sinking, Charge|
+|Rodion|Charge|
+|Sinclair|Sinking, Poise, Charge|
+|Outis|Charge|
+|Gregor|Tremor, Poise, Charge|
+
+## Locations
+**You can select 2 progression type** :
+- `Open` : Once unlocked, the whole floor is accessible.
+- `Run` : Once unlocked, you have access to the first "Run" + a Boss, sending the "Floor x Boss y - Completion" will grant access to another "Run", if there is others set in YAML, and a "Reward" Check
+
+You can configure the amount of "Runs" each floor will have.
+
+1 Run = 5 Stages + 2 Boss checks
+
+(if a Floor only has 1 Run, there is only 1 Boss Check)
+
+
+- Floor 1 has 2 checks per Stage
+- Your Final Floor will always have only 1 Run

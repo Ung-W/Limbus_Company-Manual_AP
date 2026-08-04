@@ -256,7 +256,6 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
     if sin_start == 7: # If "random_sin" selected
         for sinner in sinner_list:
             if not sin_included[sinner]:
-                print(f"Processing Sinner : {sinner}")
                 if not missing_sin_chk:
                     missing_sin_chk = True
                     add_item_if_missing(item_pool, world, player, no_match_itm)
@@ -285,7 +284,6 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
         else:
             
             for sinner in sinner_list:
-                print(f"Processing Sinner : {sinner}")
                 if full_sin_list[sin_start] not in sin_included[sinner]:
                     if not missing_sin_chk:
                         missing_sin_chk = True
@@ -299,7 +297,7 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
                     add_starting_item(starting_items, [random_sin], sinner_sel=sinner)
                 
                 else :
-                    add_starting_item(starting_items, [full_sin_list[sin_start]], sinner_sel=sinner)    
+                    add_starting_item(starting_items, [full_sin_list[sin_start]], sinner_sel=sinner)
         
     sinner_selected = ""
     
@@ -311,12 +309,6 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
         ):
             possible_items = get_possible_starting_items(item_pool, starting)
             
-            if not possible_items:
-                print("EMPTY POSSIBLE ITEMS")
-                print("Starting data:", starting)
-                print("Item pool names:", [i.name for i in item_pool])
-                raise Exception("No possible starting item")
-            
             # pick a random possible item(s) to start with, then precollect them and,
             #   since we just took them, remove them from the item pool
             for _ in range(starting['random']): # loops from 0 to starting['random'] - 1
@@ -325,7 +317,7 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
                 possible_items.remove(random_starting_item) # don't allow choosing the exact same item again
                 item_pool.remove(random_starting_item) # remove it from the pool since we're starting with it
             
-            if sinner_selected == "":
+            if sinner_selected == "" and random_starting_item.name in full_sinner_list:
                 sinner_selected = random_starting_item.name
         
     return item_pool
