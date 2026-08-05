@@ -198,7 +198,9 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
     sin_start = get_option_value(multiworld, player, "sin_start")
     
     sinner_list = list(world.options.sinner_included)
+    sinner_list.sort()
     sin_list = list(world.options.sin_included)
+    sin_list.sort()
     id_excluded = world.options.id_start_exclude
     
     # All Sins excluded from starting items per character
