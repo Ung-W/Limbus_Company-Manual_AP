@@ -32,6 +32,15 @@ class victoryCondition(Range):
     range_end = 15
     default = 5
     
+class ExtraProgressionItem(Range):
+    """
+        How many extra Progressive Floor so you want?
+    """
+    display_name = "Extra Progressive Floor"
+    range_start = 0
+    range_end = 10
+    default = 0
+    
 class floorProgression(Choice):
     """
         How do you want floor progression to be?
@@ -282,6 +291,7 @@ class startExclude(OptionList):
 def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, Type[Option[Any]]]:
     options["victory_condition"] = victoryCondition
     options["floor_progression"] = floorProgression
+    options["extra_prog_floor"] = ExtraProgressionItem
     options["floor_1"] = floor1
     options["floor_2"] = floor2
     options["floor_3"] = floor3
@@ -319,7 +329,7 @@ def after_options_defined(options: Type[PerGameCommonOptions]):
 # Use this Hook if you want to add your Option to an Option group (existing or not)
 def before_option_groups_created(groups: dict[str, list[Type[Option[Any]]]]) -> dict[str, list[Type[Option[Any]]]]:
     # Uses the format groups['GroupName'] = [TotalCharactersToWinWith]
-    groups['Progression'] = [victoryCondition, floorProgression, floor1, floor2, floor3, floor4, floor5, floor6, floor7, floor8, floor9, floor10, floor11, floor12, floor13, floor14, floor15]
+    groups['Progression'] = [victoryCondition, ExtraProgressionItem, floorProgression, floor1, floor2, floor3, floor4, floor5, floor6, floor7, floor8, floor9, floor10, floor11, floor12, floor13, floor14, floor15]
     groups['Identities'] = [sinnerOption, sinnerStart, sinOption, sinStart, startExclude]
     return groups
 

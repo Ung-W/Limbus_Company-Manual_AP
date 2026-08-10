@@ -172,6 +172,11 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
     
     for i in range(15-victory):
         item_pool.remove(prog_floor)
+        
+    extra_prog = get_option_value(multiworld, player, "extra_prog_floor")
+    
+    for i in range(extra_prog):
+        item_pool.append(world.create_item("Progressive Floor"))
     
     victory_item = next(i for i in item_pool if i.name == "Final Floor Cleared")
     
@@ -214,7 +219,7 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
         "Heathcliff": ["Burn"],
         "Ishmael": ["Rupture", "Sinking", "Charge"],
         "Rodion": ["Charge"],
-        "Sinclair": ["Sinking", "Poise", "Charge"],
+        "Sinclair": ["Sinking", "Charge"],
         "Outis": ["Charge"],
         "Gregor": ["Tremor", "Poise", "Charge"]
     }
