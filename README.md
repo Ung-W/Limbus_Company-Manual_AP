@@ -18,6 +18,13 @@ You must beat your **Final Floor**
 
 > To "Unlock" an ID, you must receive the Sinner and ALL the Sins necessary for their kit
 
+### Shop Related
+The only items from the shop which you have to find in the multiworld are :
+- Craft Egos unlock
+- Skill replacement unlock
+
+> You can purchase any other items as you'd like
+
 ### Gamemode related
 - Grace starter buffs
 - Ego gift space
