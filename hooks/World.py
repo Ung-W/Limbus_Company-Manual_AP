@@ -158,13 +158,17 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
             
     if get_option_value(multiworld, player, "floor_progression") == 2: # If "Runs" selected, create the appropriate "Floor x Cleared" Item
         victory = get_option_value(multiworld, player, "victory_condition")
+        random_runs = get_option_value(multiworld, player, "random_runs")
         global RUN_AMOUNT_LIST
         global FLOOR_LIST
         
         for i in range(victory-1):
             for amount in range(RUN_AMOUNT_LIST[i]):                
                 if RUN_AMOUNT_LIST[i] != 1:
-                    item_pool.append(world.create_item(f"{FLOOR_LIST[i]} Cleared"))
+                    if random_runs == True:
+                        item_pool.append(world.create_item(f"{FLOOR_LIST[i]} Pack"))
+                    elif random_runs == False:
+                        item_pool.append(world.create_item(f"{FLOOR_LIST[i]} Cleared"))
               
     victory = get_option_value(multiworld, player, "victory_condition")
     

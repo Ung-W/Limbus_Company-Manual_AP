@@ -81,10 +81,10 @@ def run_progression_selected(world, floor_list, runs_list, unplayableFloors):
             continue
         
         if loc[1]["name"].endswith("Reward"):
-            loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run) + 1}|"
+            loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run) + 1}| OR |{floor} Pack: {runs_list.index(run) + 1}|"
         else:
-            loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run)}|"
-            
+            loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run)}| OR |{floor} Pack: {runs_list.index(run)}|"
+
 def open_progression_selected(world):
     for loc in world.location_name_to_location.items():
         if loc[1]["category"] != "VICTORY":
