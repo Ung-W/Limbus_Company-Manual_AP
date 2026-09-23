@@ -1,6 +1,6 @@
 # Manual AP for Limbus Company
 
-Made by EchoingEito with the help of Evoker
+Designed by EchoingEito and developped by Evoker
 
 ## Goal
 
@@ -65,7 +65,9 @@ You must beat your **Final Floor**
 ## Locations
 **You can select 2 progression type** :
 - `Open` : Once unlocked, the whole floor is accessible.
-- `Run` : Once unlocked, you have access to the first "Run" + a Boss, sending the "Floor x Boss y - Completion" will grant access to another "Run", if there is others set in YAML, and a "Reward" Check
+- `Run` : Once unlocked, you have access to the first "Run" + a Boss
+  - `default` : Sending the "Floor x Boss y - Completion" will grant access to another "Run", if there is others set in YAML, and a "Reward" Check
+  - `random` : Sending the "Floor x Boss y - Completion" will act like any other location, you must find your "Floor x Pack" in the multiworld to gain acess to another run for this floor
 
 You can configure the amount of "Runs" each floor will have.
 
