@@ -3,5 +3,10 @@
   "game": "LimbusCompany",
   "creator": "EchoingEito",
   "filler_item_name": "Lunacy",
-  "death_link": true
+  "death_link": true,
+   "starting_items": [
+        {
+            "items": ["EGO Gift Slot x5", "Sinner Slot"]
+        }
+    ]
 }

@@ -162,10 +162,10 @@
       "progression": true
     },
     {
-      "count": "7",
-      "name": "Ego gift slot x5",
+      "count": "8",
+      "name": "EGO Gift Slot x5",
       "category": [
-        "Ego Slot"
+        "EGO Slot"
       ],
       "useful": true
     },
@@ -250,8 +250,8 @@
       "useful": true
     },
     {
-      "count": "11",
-      "name": "Sinner slot +1",
+      "count": "12",
+      "name": "Sinner Slot",
       "category": [
         "Progression"
       ],
@@ -259,39 +259,39 @@
     },
     {
       "count": 1,
-      "name": "ZAYIN Ego slot unlock",
+      "name": "ZAYIN EGO Slot Unlock",
       "category": [
-        "Ego Slot"
+        "EGO Slot"
       ],
       "progression": true
     },
     {
       "count": 1,
-      "name": "TETH ego slot unlock",
+      "name": "TETH EGO Slot Unlock",
       "category": [
-        "Ego Slot"
+        "EGO Slot"
       ],
       "progression": true
     },
     {
       "count": 1,
-      "name": "HE ego slot unlock",
+      "name": "HE EGO Slot Unlock",
       "category": [
-        "Ego Slot"
+        "EGO Slot"
       ],
       "progression": true
     },
     {
       "count": 1,
-      "name": "WAW ego slot unlock",
+      "name": "WAW EGO Slot Unlock",
       "category": [
-        "Ego Slot"
+        "EGO Slot"
       ],
       "progression": true
     },
     {
       "count": 1,
-      "name": "Craft Egos unlock",
+      "name": "Craft EGO Gifts Unlock",
       "category": [
         "Shop"
       ],
@@ -299,7 +299,7 @@
     },
     {
       "count": 1,
-      "name": "Skill replacement unlock",
+      "name": "Skill Replacement Unlock",
       "category": [
         "Shop"
       ],
