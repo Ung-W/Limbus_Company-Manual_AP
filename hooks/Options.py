@@ -53,7 +53,7 @@ class floorProgression(Choice):
     display_name = "Floor Progression"
     option_open = 1
     option_runs = 2
-    default = 1
+    default = 2
 
 class floor1(Range):
     """
@@ -62,7 +62,7 @@ class floor1(Range):
     display_name = "Floor 1 Runs"
     range_start = 1
     range_end = 5
-    default = 3
+    default = 1
     
 class floor2(Range):
     """
@@ -71,7 +71,7 @@ class floor2(Range):
     display_name = "Floor 2 Runs"
     range_start = 1
     range_end = 5
-    default = 3
+    default = 1
     
 class floor3(Range):
     """
@@ -80,7 +80,7 @@ class floor3(Range):
     display_name = "Floor 3 Runs"
     range_start = 1
     range_end = 5
-    default = 2
+    default = 1
     
 class floor4(Range):
     """
@@ -89,7 +89,7 @@ class floor4(Range):
     display_name = "Floor 4 Runs"
     range_start = 1
     range_end = 5
-    default = 2
+    default = 1
     
 class floor5(Range):
     """
