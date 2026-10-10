@@ -210,11 +210,11 @@ class sinnerOption(OptionSet):
         - Floor 8+ : 7 Sinners minimum
         - Floor 13+ : All Sinners must be included
             
-        Possible values are : "Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"
+        Possible values are : "Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Hong Lu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"
     """
     display_name = "Sinners Included"
-    valid_keys = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
-    default = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
+    valid_keys = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Hong Lu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
+    default = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Hong Lu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
     
 class sinnerStart(Choice):
     """
@@ -228,7 +228,7 @@ class sinnerStart(Choice):
     option_don_quixote = 2
     option_ryoshu = 3
     option_meursault = 4
-    option_honglu = 5
+    option_hong_lu = 5
     option_heathcliff = 6
     option_ishmael = 7
     option_rodion = 8
@@ -270,7 +270,7 @@ class startExclude(OptionList):
         
         These Combos are excluded by default since there are no IDs that match them :
         Yi Sang: Charge | Faust: Poise | Don Quixote: Burn, Sinking, Charge
-        Ryoshu: Sinking | Meursault: Charge | Honglu: None
+        Ryoshu: Sinking | Meursault: Charge | Hong Lu: None
         Heathcliff: Burn | Ishmael: Rupture, Sinking, Charge | Rodion: Charge
         Sinclair: Sinking, Charge | Outis: Charge | Gregor: Tremor, Poise, Charge
             
@@ -278,7 +278,7 @@ class startExclude(OptionList):
         Exemple : "Yi Sang / Tremor" if you don't have a Tremor ID for Yi Sang
         
         Spelling for Sinners : "Yi Sang", "Faust", "Don Quixote",
-        "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael",
+        "Ryoshu", "Meursault", "Hong Lu", "Heathcliff", "Ishmael",
         "Rodion", "Sinclair", "Outis", "Gregor"
         Spelling for Sins : "Burn", "Bleed", "Tremor",
         "Rupture", "Sinking", "Poise", "Charge"

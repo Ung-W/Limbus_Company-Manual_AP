@@ -290,6 +290,14 @@
       "progression": true
     },
     {
+      "count": 0,
+      "name": "ALEPH EGO Slot Unlock",
+      "category": [
+        "EGO Slot"
+      ],
+      "progression": true
+    },
+    {
       "count": 1,
       "name": "Craft EGO Gifts Unlock",
       "category": [
@@ -308,6 +316,14 @@
     {
       "count": 1,
       "name": "Maost Key",
+      "category": [
+        "Sinner Key"
+      ],
+      "useful": true
+    },
+    {
+      "count": 1,
+      "name": "HoS Ryoshu Key",
       "category": [
         "Sinner Key"
       ],

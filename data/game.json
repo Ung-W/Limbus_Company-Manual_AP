@@ -6,7 +6,12 @@
   "death_link": true,
    "starting_items": [
         {
-            "items": ["EGO Gift Slot x5", "Sinner Slot"]
+            "items": ["EGO Gift Slot x5"],
+            "random": 1
+        },
+        {
+            "items": ["Sinner Slot"],
+            "random": 1
         }
     ]
 }

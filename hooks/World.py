@@ -92,11 +92,8 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
     # Add your code here to calculate which locations to remove
     victory = get_option_value(multiworld, player, "victory_condition")
     
-    global FLOOR_LIST
     playable_floors = FLOOR_LIST[:victory]
     regions_to_remove = FLOOR_LIST[victory:]
-    
-    global RUN_AMOUNT_LIST
         
     runs_list = ["Run 1", "Run 2", "Run 3", "Run 4", "Run 5"]
         
@@ -134,7 +131,7 @@ def before_create_items_all(item_config: dict[str, int|dict], world: World, mult
 def before_create_items_starting(item_pool: list, world: World, multiworld: MultiWorld, player: int) -> list:
     items_to_remove = []
         
-    full_sinner_list = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
+    full_sinner_list = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Hong Lu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
     sinner_list = world.options.sinner_included
     
     for sinner in sinner_list:
@@ -159,8 +156,6 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
     if get_option_value(multiworld, player, "floor_progression") == 2: # If "Runs" selected, create the appropriate "Floor x Cleared" Item
         victory = get_option_value(multiworld, player, "victory_condition")
         random_runs = get_option_value(multiworld, player, "random_runs")
-        global RUN_AMOUNT_LIST
-        global FLOOR_LIST
         
         for i in range(victory-1):
             for amount in range(RUN_AMOUNT_LIST[i]):                
@@ -184,8 +179,6 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
     
     victory_item = next(i for i in item_pool if i.name == "Final Floor Cleared")
     
-    global BOSS_LIST
-    
     victory_location_name = BOSS_LIST[victory-5]
 
     try:
@@ -200,7 +193,7 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
 # The item pool after starting items are processed but before filler is added, in case you want to see the raw item pool at that stage
 def before_create_items_filler(item_pool: list, world: World, multiworld: MultiWorld, player: int) -> list:
     starting_items = []
-    full_sinner_list = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Honglu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
+    full_sinner_list = ["Yi Sang", "Faust", "Don Quixote", "Ryoshu", "Meursault", "Hong Lu", "Heathcliff", "Ishmael", "Rodion", "Sinclair", "Outis", "Gregor"]
     full_sin_list = ["Burn", "Bleed", "Tremor", "Rupture", "Sinking", "Poise", "Charge"]
     
     sinner_start = get_option_value(multiworld, player, "sinner_start")
@@ -219,7 +212,7 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
         "Don Quixote": ["Burn", "Sinking", "Charge"],
         "Ryoshu": ["Sinking"],
         "Meursault": ["Charge"],
-        "Honglu": [],
+        "Hong Lu": [],
         "Heathcliff": ["Burn"],
         "Ishmael": ["Rupture", "Sinking", "Charge"],
         "Rodion": ["Charge"],
@@ -381,12 +374,7 @@ def after_create_item(item: ManualItem, world: World, multiworld: MultiWorld, pl
 def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
     if get_option_value(multiworld, player, "floor_progression") == 2: # If "Runs" Selected, palce the appropriate "Floor x Cleared" on bosses
         victory = get_option_value(multiworld, player, "victory_condition")
-        global BOSS_LIST
         victory_location_name = BOSS_LIST[victory-5]
-        
-        global RUN_AMOUNT_LIST
-        
-        global FLOOR_LIST
         
         floor_number = []
         
