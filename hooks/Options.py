@@ -293,6 +293,22 @@ class randomRuns(Toggle):
     """
     display_name = "Runs in random"
     default = False
+    
+class maostKey(Toggle):
+    """
+        If enabled, a "Mao Faust Key" will be included in randomization to make access to this ID harder
+        as it needs only Faust and Rupture to access this OP ID
+    """
+    display_name = "Mao Faust Key"
+    default = True
+    
+class hosRyoKey(Toggle):
+    """
+        If enabled, a "HoS Ryoshu Key" will be included in randomization to make access to this ID harder
+        as it needs can be pretty trivial to obtain this OP ID if you start with Ryoshu and 1 of the 3 keywords for it
+    """
+    display_name = "Hos Ryoshu Key"
+    default = False
 
 
 # This is called before any manual options are defined, in case you want to define your own with a clean slate or let Manual define over them
@@ -321,6 +337,8 @@ def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, T
     options["sin_included"] = sinOption
     options["sin_start"] = sinStart
     options["id_start_exclude"] = startExclude
+    options["mao_faust_key"] = maostKey
+    options["hos_ryoshu_key"] = hosRyoKey
     return options
 
 # This is called after any manual options are defined, in case you want to see what options are defined or want to modify the defined options
@@ -339,7 +357,7 @@ def after_options_defined(options: Type[PerGameCommonOptions]):
 def before_option_groups_created(groups: dict[str, list[Type[Option[Any]]]]) -> dict[str, list[Type[Option[Any]]]]:
     # Uses the format groups['GroupName'] = [TotalCharactersToWinWith]
     groups['Progression'] = [victoryCondition, ExtraProgressionItem, floorProgression, randomRuns, floor1, floor2, floor3, floor4, floor5, floor6, floor7, floor8, floor9, floor10, floor11, floor12, floor13, floor14, floor15]
-    groups['Identities'] = [sinnerOption, sinnerStart, sinOption, sinStart, startExclude]
+    groups['Identities'] = [sinnerOption, sinnerStart, sinOption, sinStart, maostKey, hosRyoKey, startExclude]
     return groups
 
 def after_option_groups_created(groups: list[OptionGroup]) -> list[OptionGroup]:

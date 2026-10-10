@@ -222,7 +222,16 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
     }
     
     sin_included = build_sin_included(full_sinner_list, sin_list, sin_excluded, id_excluded)
-        
+    
+    # Sinner Key processing
+    maost_key = get_option_value(multiworld, player, "mao_faust_key")
+    hosryo_key = get_option_value(multiworld, player, "hos_ryoshu_key")
+    
+    if not maost_key:
+        add_starting_item(starting_items, [f"Mao Faust Key"])
+    if not hosryo_key:
+        add_starting_item(starting_items, [f"HoS Ryoshu Key"])
+    
     # Sinner Processing    
     
     required_sinners = get_required_sinners(get_option_value(multiworld, player, "victory_condition"))
@@ -302,6 +311,7 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
                 
                 else :
                     add_starting_item(starting_items, [full_sin_list[sin_start]], sinner_sel=sinner)
+                    
         
     sinner_selected = ""
     

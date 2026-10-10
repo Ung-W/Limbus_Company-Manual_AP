@@ -1,68 +1,51 @@
 {
   "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.regions.schema.json",
   "Floor 01": {
-    "starting": false,
-    "connects_to": [],
     "requires": ""
   },
   "Floor 02": {
-    "connects_to": [],
     "requires": "|Progressive Floor:1|"
   },
   "Floor 03": {
-    "connects_to": [],
     "requires": "|Progressive Floor:2| AND |@Sinner:3|"
   },
   "Floor 04": {
-    "connects_to": [],
     "requires": "|Progressive Floor:3| AND |@Sinner:3|"
   },
   "Floor 05": {
-    "connects_to": [],
-    "requires": "|Progressive Floor:4| AND |@Sinner:3| AND |Sinner Slot:2|"
+    "requires": "|Progressive Floor:4| AND |@Sinner:3| AND |Sinner Slot:3|"
   },
   "Floor 06": {
-    "connects_to": [],
-    "requires": "|Progressive Floor:5| AND |@Sinner:3| AND |Sinner Slot:2|"
+    "requires": "|Progressive Floor:5| AND |@Sinner:3| AND |Sinner Slot:3|"
   },
   "Floor 07": {
-    "connects_to": [],
-    "requires": "|Progressive Floor:6| AND |@Sinner:3| AND |Sinner Slot:2|"
+    "requires": "|Progressive Floor:6| AND |@Sinner:3| AND |Sinner Slot:3|"
   },
   "Floor 08": {
-    "connects_to": [],
-    "requires": "|Progressive Floor:7| AND |@Sinner:7| AND |Sinner Slot:2|"
+    "requires": "|Progressive Floor:7| AND |@Sinner:7| AND |Sinner Slot:3|"
   },
   "Floor 09": {
-    "connects_to": [],
-    "requires": "|Progressive Floor:8| AND |@Sinner:7| AND |Sinner Slot:2|"
+    "requires": "|Progressive Floor:8| AND |@Sinner:7| AND |Sinner Slot:3|"
   },
   "Floor 10": {
-    "connects_to": [],
-    "requires": "|Progressive Floor:9| AND |@Sinner:7| AND |Sinner Slot:6|"
+    "requires": "|Progressive Floor:9| AND |@Sinner:7| AND |Sinner Slot:7|"
   },
   "Floor 11": {
-    "connects_to": [],
-    "requires": "|Progressive Floor:10| AND |@Sinner:7| AND |Sinner Slot:6|"
+    "requires": "|Progressive Floor:10| AND |@Sinner:7| AND |Sinner Slot:7|"
   },
   "Floor 12": {
-    "connects_to": [],
-    "requires": "|Progressive Floor:11| AND |@Sinner:7| AND |Sinner Slot:6|"
+    "requires": "|Progressive Floor:11| AND |@Sinner:7| AND |Sinner Slot:7|"
   },
   "Floor 13": {
-    "connects_to": [],
-    "requires": "|Progressive Floor:12| AND |@Sinner:12| AND |Sinner Slot:6|"
+    "requires": "|Progressive Floor:12| AND |@Sinner:12| AND |Sinner Slot:7|"
   },
   "Floor 14": {
-    "connects_to": [],
-    "requires": "|Progressive Floor:13| AND |@Sinner:12| AND |Sinner Slot:6|"
+    "requires": "|Progressive Floor:13| AND |@Sinner:12| AND |Sinner Slot:7|"
   },
   "Floor 15": {
-    "connects_to": [],
-    "requires": "|Progressive Floor:14| AND |@Sinner:12| AND |Sinner Slot:11|"
+    "requires": "|Progressive Floor:14| AND |@Sinner:12| AND |Sinner Slot:12|"
   },
   "VICTORY": {
-    "connects_to": [],
     "requires": "|Final Floor Cleared|"
   }
 }
