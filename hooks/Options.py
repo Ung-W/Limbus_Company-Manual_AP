@@ -288,8 +288,9 @@ class startExclude(OptionList):
     
 class randomRuns(Toggle):
     """
-        If enabled alongside Floor Progression set to Runs, instead of putting a floor's run one after the other,
-        you have to find the next run in the multiworld.
+        If enabled alongside Floor Progression set to Runs,
+        instead of putting a floor's run unlock in the "Boss Completion" check,
+        you have to find a "Floor x Pack" item in the multiworld to access another run.
     """
     display_name = "Runs in random"
     default = False
