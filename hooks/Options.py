@@ -270,9 +270,9 @@ class startExclude(OptionList):
         
         These Combos are excluded by default since there are no IDs that match them :
         Yi Sang: Charge | Faust: Poise | Don Quixote: Burn, Sinking, Charge
-        Ryoshu: Sinking | Meursault: Charge | Honglu: Charge
+        Ryoshu: Sinking | Meursault: Charge | Honglu: None
         Heathcliff: Burn | Ishmael: Rupture, Sinking, Charge | Rodion: Charge
-        Sinclair: Sinking, Poise, Charge | Outis: Charge | Gregor: Tremor, Poise, Charge
+        Sinclair: Sinking, Charge | Outis: Charge | Gregor: Tremor, Poise, Charge
             
         Syntax must be "Sinner / Sin" in quotes.
         Exemple : "Yi Sang / Tremor" if you don't have a Tremor ID for Yi Sang

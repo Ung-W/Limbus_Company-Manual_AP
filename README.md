@@ -2,6 +2,8 @@
 
 Designed by EchoingEito and developped by Evoker
 
+[Poptracker pack](https://github.com/Ung-W/Limbus_Company-Manual-AP-Poptracker) to track what IDs / EGO are accessible : 
+
 ## Goal
 
 You must beat your **Final Floor**
@@ -46,6 +48,13 @@ You must beat your **Final Floor**
 > You can choose to exclude combos of Sin / Sinner if you don't have an ID that match or just if you want to., so that you don't start with a combo that you can't use.
 >
 > The following combos are disabled by default
+> 
+> Reminder that you need all of the keywords necessary for an ID's kit to be able to use it, [Poptracker Pack](https://github.com/Ung-W/Limbus_Company-Manual-AP-Poptracker) for quality of life
+> 
+> Exceptions because the inflictions are really small (5 or less potency and no count): 
+> - LCB Don Quixote - Bleed (S2 inflict 2 potency, S3 inflicts 2 potency)
+> - Tingtang Hong Lu - Bleed (S1 inflicts 4 potency)
+> - W Corp Hong Lu - Rupture (S3 inflicts 5 potency) | You still need Charge for this one but it is considered mono Charge instead of Chrge/Rupture for this manual
 
 |Sinner|Sin|
 |:-:|:-:|
@@ -54,11 +63,11 @@ You must beat your **Final Floor**
 |Don Quixote|Burn, Sinking, Charge|
 |Ryoshu|Sinking|
 |Meursault|Charge|
-|Honglu|Charge|
+|Honglu||
 |Heathcliff|Burn|
 |Ishmael|Rupture, Sinking, Charge|
 |Rodion|Charge|
-|Sinclair|Sinking, Poise, Charge|
+|Sinclair|Sinking, Charge|
 |Outis|Charge|
 |Gregor|Tremor, Poise, Charge|
 

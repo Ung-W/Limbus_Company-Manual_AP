@@ -219,7 +219,7 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
         "Don Quixote": ["Burn", "Sinking", "Charge"],
         "Ryoshu": ["Sinking"],
         "Meursault": ["Charge"],
-        "Honglu": ["Charge"],
+        "Honglu": [],
         "Heathcliff": ["Burn"],
         "Ishmael": ["Rupture", "Sinking", "Charge"],
         "Rodion": ["Charge"],
