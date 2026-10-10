@@ -34,12 +34,12 @@ class victoryCondition(Range):
     
 class ExtraProgressionItem(Range):
     """
-        How many extra Progressive Floor so you want?
+        How many extra Progressive Floor do you want?
     """
     display_name = "Extra Progressive Floor"
     range_start = 0
     range_end = 10
-    default = 0
+    default = 10
     
 class floorProgression(Choice):
     """
