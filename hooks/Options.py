@@ -30,7 +30,7 @@ class victoryCondition(Range):
     display_name = "Final Floor"
     range_start = 5
     range_end = 15
-    default = 5
+    default = 15
     
 class ExtraProgressionItem(Range):
     """
@@ -39,7 +39,7 @@ class ExtraProgressionItem(Range):
     display_name = "Extra Progressive Floor"
     range_start = 0
     range_end = 10
-    default = 10
+    default = 0
     
 class floorProgression(Choice):
     """
