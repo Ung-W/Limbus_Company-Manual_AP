@@ -109,7 +109,7 @@
       "count": 1,
       "name": "Rupture",
       "category": [
-        "Sin"
+        "Sin Keywords"
       ],
       "progression": true
     },
@@ -117,7 +117,7 @@
       "count": 1,
       "name": "Poise",
       "category": [
-        "Sin"
+        "Sin Keywords"
       ],
       "progression": true
     },
@@ -125,7 +125,7 @@
       "count": 1,
       "name": "Charge",
       "category": [
-        "Sin"
+        "Sin Keywords"
       ],
       "progression": true
     },
@@ -133,7 +133,7 @@
       "count": 1,
       "name": "Bleed",
       "category": [
-        "Sin"
+        "Sin Keywords"
       ],
       "progression": true
     },
@@ -141,7 +141,7 @@
       "count": 1,
       "name": "Burn",
       "category": [
-        "Sin"
+        "Sin Keywords"
       ],
       "progression": true
     },
@@ -149,7 +149,7 @@
       "count": 1,
       "name": "Tremor",
       "category": [
-        "Sin"
+        "Sin Keywords"
       ],
       "progression": true
     },
@@ -157,7 +157,7 @@
       "count": 1,
       "name": "Sinking",
       "category": [
-        "Sin"
+        "Sin Keywords"
       ],
       "progression": true
     },
@@ -165,7 +165,7 @@
       "count": "8",
       "name": "EGO Gift Slot x5",
       "category": [
-        "EGO Slot"
+        "Shop"
       ],
       "useful": true
     },
@@ -579,17 +579,17 @@
     },
     {
       "count": 0,
-      "name": "Starting Sin in yaml is not included in the randomization, get a random one instead :)",
+      "name": "Starting Sin Keyword in yaml is not included in the randomization, get a random one instead :)",
       "category": [
-        "Sin"
+        "Sin Keywords"
       ],
       "useful": true
     },
     {
       "count": 0,
-      "name": "Starting Sin didn't have a match with the Starting Sinner, here's one that does",
+      "name": "Starting Sin Keyword didn't have a match with the Starting Sinner, here's one that does",
       "category": [
-        "Sin"
+        "Sin Keywords"
       ],
       "useful": true
     }
