@@ -16,13 +16,16 @@ You must beat your **Final Floor**
 - All Sinners
 - All Sins (status effects)
 - Ego slots
-- Hyper specific Maost Key (to make mao faust a little harder to reach)
+> Optional Sinner Key (OP ID that may be too easy to obtain)
+- Mao Faust Key
+- HoS Ryoshu Key
+
 
 > To "Unlock" an ID, you must receive the Sinner and ALL the Sins necessary for their kit
 
 ### Gamemode related
 - Grace starter buffs
-- Ego gift space
+- EGO Gift slots (5 at a time)
 - Shop abilities
   - Craft Egos unlock
   - Skill replacement unlock
@@ -30,7 +33,6 @@ You must beat your **Final Floor**
 
 ### AP Gating
 - Progressive Floors
-  > Party Slots means all the "Sinner Slot +1" items + 1 (this one is implied since you can't go with 0 members in your party)
   - Floor 3+ requires 3 Sinners
   - Floor 5+ requires 3 Sinners and 3 Party Slots
   - Floor 8+ requires 7 Sinners and 3 Party Slots
@@ -42,8 +44,8 @@ You must beat your **Final Floor**
 
 - One Sinner (random or not)
 - One Sin (random or not)
-- 1 Ego Gifts Slots x5 (not shown in client)
-- 1 Sinner Slot +1 (not shown in the client)
+- 1 Ego Gifts Slots x5
+- 1 Sinner Slot
 
 > You can choose to exclude combos of Sin / Sinner if you don't have an ID that match or just if you want to., so that you don't start with a combo that you can't use.
 >
