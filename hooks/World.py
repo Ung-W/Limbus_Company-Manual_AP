@@ -264,7 +264,7 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
     # Sin Processing
 
     missing_sin_chk = False
-    no_match_itm = f"Starting Sin didn't have a match with the Starting Sinner, here's one that does"
+    no_match_itm = f"Starting Sin Keyword didn't have a match with the Starting Sinner, here's one that does"
         
     if sin_start == 7: # If "random_sin" selected
         for sinner in sinner_list:
@@ -282,7 +282,7 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
             add_starting_item(starting_items, sin_included[sinner], sinner_sel=sinner)
     else:
         if full_sin_list[sin_start] not in sin_list:
-            wrong_sin_itm = f"Starting Sin in yaml is not included in the randomization, get a random one instead :)"
+            wrong_sin_itm = f"Starting Sin Keyword in yaml is not included in the randomization, get a random one instead :)"
             item_pool.append(world.create_item(wrong_sin_itm))
             add_starting_item(starting_items, [wrong_sin_itm], warning=True)
             
