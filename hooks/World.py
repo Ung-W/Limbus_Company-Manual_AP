@@ -35,7 +35,7 @@ import logging
 ## The fill_slot_data method will be used to send data to the Manual client for later use, like deathlink.
 ########################################################################################
 
-RUN_AMOUNT_LIST : list[int] = []
+RUN_AMOUNT_LIST : dict[int, list[int]] = {}
 
 BOSS_LIST : list[str] = [
     "Floor 05 Boss - Completion", "Floor 06 Boss - Completion", "Floor 07 Boss - Completion",
@@ -64,7 +64,7 @@ def before_generate_early(world: World, multiworld: MultiWorld, player: int) -> 
 # Called before regions and locations are created. Not clear why you'd want this, but it's here. Victory location is included, but Victory event is not placed yet.
 def before_create_regions(world: World, multiworld: MultiWorld, player: int):
     global RUN_AMOUNT_LIST
-    RUN_AMOUNT_LIST = [
+    RUN_AMOUNT : list[int] = [
         world.options.floor_1,
         world.options.floor_2,
         world.options.floor_3,
@@ -81,6 +81,9 @@ def before_create_regions(world: World, multiworld: MultiWorld, player: int):
         world.options.floor_14,
         world.options.floor_15
     ]
+    
+    RUN_AMOUNT_LIST[player] = RUN_AMOUNT
+    
     pass
 
 # Called after regions and locations are created, in case you want to see or modify that information. Victory location is included.
@@ -98,7 +101,7 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
     runs_list = ["Run 1", "Run 2", "Run 3", "Run 4", "Run 5"]
         
     for i in range(len(playable_floors)):
-        run_amount = RUN_AMOUNT_LIST[i]
+        run_amount = RUN_AMOUNT_LIST[player][i]
         is_last_floor = i == len(playable_floors) - 1
         
         for location in world.location_name_to_location.items():
@@ -152,20 +155,23 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
     for item_name in items_to_remove:
         item = next(i for i in item_pool if i.name == item_name)
         item_pool.remove(item)
-            
+    
+    victory = get_option_value(multiworld, player, "victory_condition")
+    
     if get_option_value(multiworld, player, "floor_progression") == 2: # If "Runs" selected, create the appropriate "Floor x Cleared" Item
-        victory = get_option_value(multiworld, player, "victory_condition")
         random_runs = get_option_value(multiworld, player, "random_runs")
         
-        for i in range(victory-1):
-            for amount in range(RUN_AMOUNT_LIST[i]):                
-                if RUN_AMOUNT_LIST[i] != 1:
-                    if random_runs == True:
+        for i in range(victory-1):            
+            amount = RUN_AMOUNT_LIST[player][i]
+
+            if amount != 1:
+                amount = amount - 1 if amount == 5 or random_runs else amount
+                    
+                for c in range(amount):
+                    if random_runs:
                         item_pool.append(world.create_item(f"{FLOOR_LIST[i]} Pack"))
-                    elif random_runs == False:
+                    else:
                         item_pool.append(world.create_item(f"{FLOOR_LIST[i]} Cleared"))
-              
-    victory = get_option_value(multiworld, player, "victory_condition")
     
     prog_floor = next(i for i in item_pool if i.name == "Progressive Floor")
     
@@ -388,8 +394,8 @@ def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
         
         floor_number = []
         
-        for i in range(len(RUN_AMOUNT_LIST)):
-            if RUN_AMOUNT_LIST[i] > 1:
+        for i in range(len(RUN_AMOUNT_LIST[player])):
+            if RUN_AMOUNT_LIST[player][i] > 1:
                 floor_number.append(FLOOR_LIST[i])
         
         boss_locations = [

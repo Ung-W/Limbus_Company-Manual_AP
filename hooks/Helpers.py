@@ -53,11 +53,11 @@ def process_location_removal(location, locationRemove_list, lastFloor_cond, runs
         locationRemove_list.append(loc_name)
         
 def process_reg_loc_removal(multiworld, player, regionRemove_list, locationRemove_list):
-    for region in multiworld.regions:
-        if region.player == player:
-            if region.name in regionRemove_list:
-                for location in list(region.locations):
-                    region.locations.remove(location)
+    for region in multiworld.get_regions(player):
+        if region.name in regionRemove_list:
+            for location in list(region.locations):
+                region.locations.remove(location)
+            continue
 
         for location in list(region.locations):
             if location.name in locationRemove_list:
@@ -120,7 +120,6 @@ def add_starting_item(starting_items, items, warning=None, sinner_sel=None, rand
 def get_possible_starting_items(item_pool, starting_data):
     # get all unique item names from the starting_data
     item_names = set(starting_data.get("items", []))
-    test = [item for item in item_pool if item.name in item_names]
     return [item for item in item_pool if item.name in item_names]
 
 def build_sin_included(sinners, sins, sin_banned, id_banned):
