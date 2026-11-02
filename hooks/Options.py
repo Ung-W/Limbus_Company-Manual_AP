@@ -288,9 +288,11 @@ class startExclude(OptionList):
     
 class randomRuns(Toggle):
     """
-        If enabled alongside Floor Progression set to Runs,
-        instead of putting a floor's run unlock in the "Boss Completion" check,
-        you have to find a "Floor x Pack" item in the multiworld to access another run.
+        Extra option for the "Run" setting of "Floor Progression".
+        - False : Every "Floor x Boss y - Completion" location will have a "Floor x cleared" item
+                which unlock your next batch of stage for this floor
+        - True : "Floor x Boss y - Completion" is just another location,
+                you need to find / get sent a "Floor x Pack" to unlock the next batch of stage for a floor
     """
     display_name = "Runs in random"
     default = False
