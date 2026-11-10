@@ -40,20 +40,6 @@ class ExtraProgressionItem(Range):
     range_start = 0
     range_end = 10
     default = 0
-    
-class floorProgression(Choice):
-    """
-        How do you want floor progression to be?
-        
-        Open : All stages are available from the start, only one Boss check
-        Runs : Runs are split by groups of 5 Stages, each ending in a Boss check
-        
-        The next options will determine how many sets of 5 stages (regardlesss of this choice) will be generated
-    """
-    display_name = "Floor Progression"
-    option_open = 1
-    option_runs = 2
-    default = 2
 
 class floor1(Range):
     """
@@ -191,16 +177,6 @@ class floor14(Range):
     range_end = 5
     default = 1
     
-class floor15(Range):
-    """
-        Define how many runs for Floor 15 are included.
-        Ignored if this is your Final Floor, or if your Final Floor is below. (will default to 1)
-    """
-    display_name = "Floor 15 Runs"
-    range_start = 1
-    range_end = 5
-    default = 1
-    
 class sinnerOption(OptionSet):
     """
         Toggle Sinners to be included in the pool.
@@ -274,7 +250,8 @@ class startExclude(OptionList):
         Heathcliff: Burn | Ishmael: Rupture, Sinking, Charge | Rodion: Charge
         Sinclair: Sinking, Charge | Outis: Charge | Gregor: Tremor, Poise, Charge
             
-        Syntax must be "Sinner / Sin" in quotes.
+        Syntax must be "Sinner / Sin" without quotes if you're using the Option Creator.
+        Syntax must be "Sinner / Sin" with quotes if editing the yaml with a text editor.
         Exemple : "Yi Sang / Tremor" if you don't have a Tremor ID for Yi Sang
         
         Spelling for Sinners : "Yi Sang", "Faust", "Don Quixote",
@@ -288,7 +265,7 @@ class startExclude(OptionList):
     
 class randomRuns(Toggle):
     """
-        Extra option for the "Run" setting of "Floor Progression".
+        Are your runs randomised in the multiworld ?.
         - False : Every "Floor x Boss y - Completion" location will have a "Floor x cleared" item
                 which unlock your next batch of stage for this floor
         - True : "Floor x Boss y - Completion" is just another location,
@@ -302,7 +279,7 @@ class maostKey(Toggle):
         If enabled, a "Mao Faust Key" will be included in randomization to make access to this ID harder
         as it needs only Faust and Rupture to access this OP ID
     """
-    display_name = "Mao Faust Key"
+    display_name = "Mao Faust Key in pool ?"
     default = True
     
 class hosRyoKey(Toggle):
@@ -310,14 +287,13 @@ class hosRyoKey(Toggle):
         If enabled, a "HoS Ryoshu Key" will be included in randomization to make access to this ID harder
         as it needs can be pretty trivial to obtain this OP ID if you start with Ryoshu and 1 of the 3 keywords for it
     """
-    display_name = "Hos Ryoshu Key"
+    display_name = "Hos Ryoshu Key in pool ?"
     default = False
 
 
 # This is called before any manual options are defined, in case you want to define your own with a clean slate or let Manual define over them
 def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, Type[Option[Any]]]:
     options["victory_condition"] = victoryCondition
-    options["floor_progression"] = floorProgression
     options["random_runs"] = randomRuns
     options["extra_prog_floor"] = ExtraProgressionItem
     options["floor_1"] = floor1
@@ -334,7 +310,6 @@ def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, T
     options["floor_12"] = floor12
     options["floor_13"] = floor13
     options["floor_14"] = floor14
-    options["floor_15"] = floor15
     options["sinner_included"] = sinnerOption
     options["sinner_start"] = sinnerStart
     options["sin_included"] = sinOption
@@ -359,7 +334,7 @@ def after_options_defined(options: Type[PerGameCommonOptions]):
 # Use this Hook if you want to add your Option to an Option group (existing or not)
 def before_option_groups_created(groups: dict[str, list[Type[Option[Any]]]]) -> dict[str, list[Type[Option[Any]]]]:
     # Uses the format groups['GroupName'] = [TotalCharactersToWinWith]
-    groups['Progression'] = [victoryCondition, ExtraProgressionItem, floorProgression, randomRuns, floor1, floor2, floor3, floor4, floor5, floor6, floor7, floor8, floor9, floor10, floor11, floor12, floor13, floor14, floor15]
+    groups['Progression'] = [victoryCondition, ExtraProgressionItem, randomRuns, floor1, floor2, floor3, floor4, floor5, floor6, floor7, floor8, floor9, floor10, floor11, floor12, floor13, floor14]
     groups['Identities'] = [sinnerOption, sinnerStart, sinOption, sinStart, maostKey, hosRyoKey, startExclude]
     return groups
 

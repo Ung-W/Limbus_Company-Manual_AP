@@ -63,33 +63,6 @@ def process_reg_loc_removal(multiworld, player, regionRemove_list, locationRemov
             if location.name in locationRemove_list:
                 region.locations.remove(location)
         
-def run_progression_selected(world, floor_list, runs_list, unplayableFloors):
-    removed_floors = set(unplayableFloors)                       
-
-    for loc in world.location_name_to_location.items():
-        category = loc[1]["category"]
-        
-        if any(floor in category for floor in removed_floors):
-            continue
-
-        floor = next((f for f in floor_list if f in category), None)
-        run = next((r for r in runs_list if r in category), None)
-
-        if floor is None or run is None:
-            continue
-        if floor == "Floor 15":
-            continue
-        
-        if loc[1]["name"].endswith("Reward"):
-            loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run) + 1}| OR |{floor} Pack: {runs_list.index(run)}|"
-        else:
-            loc[1]["requires"] = f"|{floor} Cleared: {runs_list.index(run)}| OR |{floor} Pack: {runs_list.index(run)}|"
-
-def open_progression_selected(world):
-    for loc in world.location_name_to_location.items():
-        if loc[1]["category"] != "VICTORY":
-            loc[1].pop("requires", None)
-        
 def get_required_sinners(win_cond):
     if win_cond >= 13:
         return 12

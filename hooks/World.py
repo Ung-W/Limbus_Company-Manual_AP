@@ -16,8 +16,8 @@ from ..Data import game_table, item_table, location_table, region_table
 # These helper methods allow you to determine if an option has been set, or what its value is, for any player in the multiworld
 from ..Helpers import is_option_enabled, get_option_value, format_state_prog_items_key, ProgItemsCat, remove_specific_item
 from .Helpers import (
-    process_location_removal, process_reg_loc_removal, run_progression_selected, open_progression_selected,
-    get_required_sinners, add_item_if_missing, add_starting_item, get_possible_starting_items, build_sin_included
+    process_location_removal, process_reg_loc_removal, get_required_sinners,
+    add_item_if_missing, add_starting_item, get_possible_starting_items, build_sin_included
 )
 
 # calling logging.info("message") anywhere below in this file will output the message to both console and log file
@@ -79,7 +79,7 @@ def before_create_regions(world: World, multiworld: MultiWorld, player: int):
         world.options.floor_12,
         world.options.floor_13,
         world.options.floor_14,
-        world.options.floor_15
+        1
     ]
     
     RUN_AMOUNT_LIST[player] = RUN_AMOUNT
@@ -110,14 +110,6 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
             process_location_removal(location, locationNamesToRemove, is_last_floor, runs_list, run_amount)
     
     process_reg_loc_removal(multiworld, player, regions_to_remove, locationNamesToRemove)
-                    
-    progression_opt = get_option_value(multiworld, player, "floor_progression")
-    
-    if progression_opt == 2: # If "Runs" selected, change "requires" field to needing "Floor x Cleared" items when necessary
-        run_progression_selected(world, playable_floors, runs_list, regions_to_remove)
-    
-    elif progression_opt == 1: # If "Open" selected, make sure the "requires" field is not in the location
-        open_progression_selected(world)
 
 # This hook allows you to access the item names & counts before the items are created. Use this to increase/decrease the amount of a specific item in the pool
 # Valid item_config key/values:
@@ -158,20 +150,19 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
     
     victory = get_option_value(multiworld, player, "victory_condition")
     
-    if get_option_value(multiworld, player, "floor_progression") == 2: # If "Runs" selected, create the appropriate "Floor x Cleared" Item
-        random_runs = get_option_value(multiworld, player, "random_runs")
-        
-        for i in range(victory-1):            
-            amount = RUN_AMOUNT_LIST[player][i]
+    random_runs = get_option_value(multiworld, player, "random_runs")
+    
+    for i in range(victory-1):            
+        amount = RUN_AMOUNT_LIST[player][i]
 
-            if amount != 1:
-                amount = amount - 1 if amount == 5 or random_runs else amount
-                    
-                for c in range(amount):
-                    if random_runs:
-                        item_pool.append(world.create_item(f"{FLOOR_LIST[i]} Pack"))
-                    else:
-                        item_pool.append(world.create_item(f"{FLOOR_LIST[i]} Cleared"))
+        if amount != 1:
+            amount = amount - 1 if amount == 5 or random_runs else amount
+                
+            for c in range(amount):
+                if random_runs:
+                    item_pool.append(world.create_item(f"{FLOOR_LIST[i]} Pack"))
+                else:
+                    item_pool.append(world.create_item(f"{FLOOR_LIST[i]} Cleared"))
     
     prog_floor = next(i for i in item_pool if i.name == "Progressive Floor")
     
@@ -388,44 +379,43 @@ def after_create_item(item: ManualItem, world: World, multiworld: MultiWorld, pl
 
 # This method is run towards the end of pre-generation, before the place_item options have been handled and before AP generation occurs
 def before_generate_basic(world: World, multiworld: MultiWorld, player: int):
-    if get_option_value(multiworld, player, "floor_progression") == 2: # If "Runs" Selected, palce the appropriate "Floor x Cleared" on bosses
-        victory = get_option_value(multiworld, player, "victory_condition")
-        victory_location_name = BOSS_LIST[victory-5]
-        
-        floor_number = []
-        
-        for i in range(len(RUN_AMOUNT_LIST[player])):
-            if RUN_AMOUNT_LIST[player][i] > 1:
-                floor_number.append(FLOOR_LIST[i])
-        
-        boss_locations = [
-            loc for loc in multiworld.get_locations(player)
-                if "Completion" in loc.name and loc.name != victory_location_name and "Boss - Completion" not in loc.name
-        ]
-        
-        boss_by_floor = {}
+    victory = get_option_value(multiworld, player, "victory_condition")
+    victory_location_name = BOSS_LIST[victory-5]
+    
+    floor_number = []
+    
+    for i in range(len(RUN_AMOUNT_LIST[player])):
+        if RUN_AMOUNT_LIST[player][i] > 1:
+            floor_number.append(FLOOR_LIST[i])
+    
+    boss_locations = [
+        loc for loc in multiworld.get_locations(player)
+            if "Completion" in loc.name and loc.name != victory_location_name and "Boss - Completion" not in loc.name
+    ]
+    
+    boss_by_floor = {}
 
-        for loc in boss_locations:
-            for floor in floor_number:
-                if floor in loc.name:
-                    boss_by_floor.setdefault(floor, []).append(loc)
-        
-        prog = [
-                i for i in multiworld.get_items()
-                    if i.player == player and "Cleared" in i.name and i.name != "Final Floor Cleared"
-            ]
-        
-        prog_by_floor = {}
-
-        for item in prog:
-            prog_by_floor.setdefault(item.name, []).append(item)
-                    
+    for loc in boss_locations:
         for floor in floor_number:
-            cleared_items = prog_by_floor.get(f"{floor} Cleared", [])
+            if floor in loc.name:
+                boss_by_floor.setdefault(floor, []).append(loc)
+    
+    prog = [
+            i for i in multiworld.get_items()
+                if i.player == player and "Cleared" in i.name and i.name != "Final Floor Cleared"
+        ]
+    
+    prog_by_floor = {}
 
-            for boss_loc, item_to_place in zip(boss_by_floor.get(floor, []), cleared_items):
-                boss_loc.place_locked_item(item_to_place)
-                multiworld.itempool.remove(item_to_place)
+    for item in prog:
+        prog_by_floor.setdefault(item.name, []).append(item)
+                
+    for floor in floor_number:
+        cleared_items = prog_by_floor.get(f"{floor} Cleared", [])
+
+        for boss_loc, item_to_place in zip(boss_by_floor.get(floor, []), cleared_items):
+            boss_loc.place_locked_item(item_to_place)
+            multiworld.itempool.remove(item_to_place)
 
 # This method is run at the very end of pre-generation, once the place_item options have been handled and before AP generation occurs
 def after_generate_basic(world: World, multiworld: MultiWorld, player: int):
