@@ -253,63 +253,71 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
             item_pool.append(world.create_item(wrong_sinner_itm))
             
             add_starting_item(starting_items, sinner_list)
-            
             add_starting_item(starting_items, [wrong_sinner_itm], warning=True)
         else:
             add_starting_item(starting_items, [full_sinner_list[sinner_start]])
         
     # Sin Processing
-
     missing_sin_chk = False
     no_match_itm = f"Starting Sin Keyword didn't have a match with the Starting Sinner, here's one that does"
-        
-    if sin_start == 7: # If "random_sin" selected
+
+    def get_random_sin(sinner):
+        sin_included[sinner] = [
+            sin for sin in full_sin_list
+            if sin not in sin_excluded[sinner]
+        ]
+        random_sin = world.random.choice(sin_included[sinner])
+        add_item_if_missing(item_pool, world, player, random_sin)
+        return random_sin
+
+    def add_missing_sin_warning():
+        nonlocal missing_sin_chk
+
+        if not missing_sin_chk:
+            missing_sin_chk = True
+            add_item_if_missing(item_pool, world, player, no_match_itm)
+
+    if sin_start == 7:  # If "random_sin" selected
         for sinner in sinner_list:
             if not sin_included[sinner]:
-                if not missing_sin_chk:
-                    missing_sin_chk = True
-                    add_item_if_missing(item_pool, world, player, no_match_itm)
-                
-                sin_included[sinner] = [sin for sin in full_sin_list if sin not in sin_excluded[sinner]]
-                random_sin = world.random.choice(sin_included[sinner])
-                add_item_if_missing(item_pool, world, player, random_sin)
-                
+                add_missing_sin_warning()
+                get_random_sin(sinner)
                 add_starting_item(starting_items, [no_match_itm], sinner_sel=sinner)
-            
+
             add_starting_item(starting_items, sin_included[sinner], sinner_sel=sinner)
     else:
-        if full_sin_list[sin_start] not in sin_list:
+        selected_sin = full_sin_list[sin_start]
+        # Sinners that should receive the selected/randomized Sin
+        selected_sinners = (
+            sinner_list
+            if sinner_start == 12
+            else [full_sinner_list[sinner_start]]
+        )
+
+        if selected_sin not in sin_list:
             wrong_sin_itm = f"Starting Sin Keyword in yaml is not included in the randomization, get a random one instead :)"
             item_pool.append(world.create_item(wrong_sin_itm))
             add_starting_item(starting_items, [wrong_sin_itm], warning=True)
-            
-            for sinner in sinner_list:
-                
+
+            for sinner in selected_sinners:
                 if not sin_included[sinner]:
-                    sin_included[sinner] = [sin for sin in full_sin_list if sin not in sin_excluded[sinner]]
-                    random_sin = world.random.choice(sin_included[sinner])
-                    add_item_if_missing(item_pool, world, player, random_sin)
-                    
+                    get_random_sin(sinner)
+
                 add_starting_item(starting_items, sin_included[sinner], sinner_sel=sinner)
         else:
-            
-            for sinner in sinner_list:
-                if full_sin_list[sin_start] not in sin_included[sinner]:
-                    if not missing_sin_chk:
-                        missing_sin_chk = True
-                        add_item_if_missing(item_pool, world, player, no_match_itm)
-                    
-                    sin_included[sinner] = [sin for sin in full_sin_list if sin not in sin_excluded[sinner]]
-                    random_sin = world.random.choice(sin_included[sinner])
-                    add_item_if_missing(item_pool, world, player, random_sin)
-                    
+            for sinner in selected_sinners:
+                if selected_sin not in sin_included[sinner]:
+                    add_missing_sin_warning()
+
+                    random_sin = get_random_sin(sinner)
+
                     add_starting_item(starting_items, [no_match_itm], sinner_sel=sinner)
                     add_starting_item(starting_items, [random_sin], sinner_sel=sinner)
-                
-                else :
-                    add_starting_item(starting_items, [full_sin_list[sin_start]], sinner_sel=sinner)
-                    
-        
+
+                else:
+                    add_starting_item(starting_items, [selected_sin], sinner_sel=sinner)
+    
+    # Precollect starting items
     sinner_selected = ""
     
     for starting in starting_items:
@@ -320,8 +328,8 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
         ):
             possible_items = get_possible_starting_items(item_pool, starting)
             
-            # pick a random possible item(s) to start with, then precollect them and,
-            #   since we just took them, remove them from the item pool
+            # Pick random possible item(s) to start with, then precollect them.
+            # Since we just took them, remove them from the item pool.
             for _ in range(starting['random']): # loops from 0 to starting['random'] - 1
                 random_starting_item = world.random.choice(possible_items)
                 multiworld.push_precollected(random_starting_item)
